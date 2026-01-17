@@ -469,6 +469,17 @@
             font-size: 9px;
         }
 
+        .eoat-tag {
+            display: inline-block;
+            background: #2d2d2d;
+            padding: 2px 5px;
+            margin: 1px;
+            border-radius: 2px;
+            font-size: 0.62rem;
+            color: #fff;
+            border: 1px solid #555;
+        }
+
         @media print {
 
             body,
@@ -573,12 +584,12 @@
         const content = {
             en: {
                 role: "Industrial Robot Programmer",
-                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Experienced in programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots. Proficient in Virtual Commissioning, Offline Programming (OLP), and Safety configuration. Creator of the KUKA KRL VS Code Extension. Strong background in PLC integration (Siemens, Mitsubishi) and industrial protocols (Profinet, EtherCAT).",
+                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Experienced in programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots. Proficient in Virtual Commissioning, Offline Programming (OLP), and Safety configuration. Creator of the KUKA KRL VS Code Extension. Strong background in PLC integration (Siemens, Mitsubishi) and industrial protocols (Profinet, EtherCAT). Ready for international business travel.",
                 titles: {
                     contacts: "Contact", robots: "Robots", sim: "Simulation",
-                    apps: "Applications", industrial: "Protocols & Safety",
-                    dev: "Dev", exp: "Experience", edu: "Education",
-                    langs: "Languages", extra: "Additional", certs: "Training"
+                    apps: "Applications", eoat: "EOAT / Tooling",
+                    industrial: "Protocols & Safety", dev: "Dev", exp: "Experience",
+                    edu: "Education", langs: "Languages", extra: "Additional", certs: "Certifications"
                 },
                 contact: { loc: "Bursa, Turkey", phone: "+90 505 047 6850" },
                 badges: [
@@ -594,6 +605,7 @@
                     { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
                 applications: ["Spot Welding", "Arc Welding", "Palletizing", "Handling", "Glueing/Sealing"],
+                eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
                 industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
@@ -610,8 +622,9 @@
                     { icon: "fa-plane", text: "Ready for Business Travel" }
                 ],
                 certs: [
-                    "KUKA Programming (Internal)",
-                    "ABB RobotStudio Basics"
+                    { name: "ESTUN Robotics", org: "Official (Manufacturer)" },
+                    { name: "FANUC Programming", org: "Official Rep. (Turkey)" },
+                    { name: "KUKA / ABB / Safety", org: "Internal Training" }
                 ],
                 exp: [
                     {
@@ -619,11 +632,12 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Present",
                         desc: [
-                            "Programmed and commissioned 10+ robotic cells (KUKA, ABB, ESTUN, Fanuc).",
+                            "Programming and commissioning of robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive and general industry.",
                             "Virtual commissioning and OLP using RobotStudio, RoboGuide, WorkVisual.",
-                            "Pioneered ESTUN integration with automotive-grade standards.",
-                            "Developed modular code libraries for Palletizing and Welding apps.",
-                            "Configured Safety systems: SafeOperation, SafeMove, CIP Safety.",
+                            "Integration of ESTUN robots with automotive-grade standards (first implementation in company).",
+                            "Configuration of Spot/Arc Welding systems: ARO Servo Guns, Fronius and SKS torches.",
+                            "Development of modular code libraries for Palletizing and Welding applications.",
+                            "Safety configuration: SafeOperation, SafeMove, CIP Safety zones.",
                             "PLC integration (Siemens S7, Mitsubishi) via Profinet/EtherCAT."
                         ]
                     },
@@ -653,12 +667,12 @@
             },
             tr: {
                 role: "Endüstriyel Robot Programcısı",
-                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Yüksek Müh.). KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması ve devreye alınmasında deneyimli. Virtual Commissioning, OLP ve Safety yapılandırmasında yetkin. KUKA KRL VS Code Eklentisinin geliştiricisi. PLC entegrasyonu (Siemens, Mitsubishi) ve endüstriyel protokollerde güçlü altyapı.",
+                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Yüksek Müh.). KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması ve devreye alınmasında deneyimli. Virtual Commissioning, OLP ve Safety yapılandırmasında yetkin. KUKA KRL VS Code Eklentisinin geliştiricisi. PLC entegrasyonu (Siemens, Mitsubishi) ve endüstriyel protokollerde güçlü altyapı. Uluslararası seyahate hazır.",
                 titles: {
                     contacts: "İletişim", robots: "Robotlar", sim: "Simülasyon",
-                    apps: "Uygulamalar", industrial: "Protokoller & Safety",
-                    dev: "Yazılım", exp: "Deneyim", edu: "Eğitim",
-                    langs: "Diller", extra: "Ek Bilgi", certs: "Eğitimler"
+                    apps: "Uygulamalar", eoat: "EOAT / Ekipman",
+                    industrial: "Protokoller & Safety", dev: "Yazılım", exp: "Deneyim",
+                    edu: "Eğitim", langs: "Diller", extra: "Ek Bilgi", certs: "Sertifikalar"
                 },
                 contact: { loc: "Bursa, Türkiye", phone: "+90 505 047 6850" },
                 badges: [
@@ -673,7 +687,8 @@
                     { name: "RoboGuide", bg: "#FFC107" },
                     { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
-                applications: ["Punta Kaynak", "Gazaltı Kaynak", "Paletleme", "Taşıma", "Yapıştırma/Sızdırmazlık"],
+                applications: ["Punta Kaynak", "Gazaltı Kaynak", "Paletleme", "Taşıma", "Yapıştırma"],
+                eoat: ["ARO Servo Tabanca", "Fronius Torch", "SKS Torch", "Özel Gripper"],
                 industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Eklentisi",
@@ -690,8 +705,9 @@
                     { icon: "fa-plane", text: "Seyahate Hazır" }
                 ],
                 certs: [
-                    "KUKA Programlama (Şirket İçi)",
-                    "ABB RobotStudio Temel"
+                    { name: "ESTUN Robotik", org: "Üretici Resmi Eğitimi" },
+                    { name: "FANUC Programlama", org: "Resmi Temsilci (Türkiye)" },
+                    { name: "KUKA / ABB / Safety", org: "Şirket İçi Eğitim" }
                 ],
                 exp: [
                     {
@@ -699,9 +715,10 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Devam",
                         desc: [
-                            "10+ robotik hücrenin programlanması ve devreye alınması (KUKA, ABB, ESTUN, Fanuc).",
+                            "Otomotiv ve genel endüstri için robotik hücrelerin (KUKA, ABB, ESTUN, Fanuc) programlanması ve devreye alınması.",
                             "RobotStudio, RoboGuide, WorkVisual ile virtual commissioning ve OLP.",
-                            "ESTUN robotlarının otomotiv standartlarında entegrasyonu.",
+                            "ESTUN robotlarının otomotiv standartlarında entegrasyonu (şirkette ilk uygulama).",
+                            "Punta/Gazaltı Kaynak sistemlerinin yapılandırması: ARO Servo Tabanca, Fronius ve SKS torch.",
                             "Paletleme ve Kaynak uygulamaları için modüler kod kütüphaneleri.",
                             "Safety sistemleri: SafeOperation, SafeMove, CIP Safety.",
                             "PLC entegrasyonu (Siemens S7, Mitsubishi) Profinet/EtherCAT."
@@ -733,12 +750,12 @@
             },
             ru: {
                 role: "Программист промышленных роботов",
-                summary: "Инженер-автоматизатор (магистр), специализирующийся на интеграции промышленных роботов. Опыт программирования и пусконаладки KUKA, ABB, Fanuc и ESTUN. Владение Virtual Commissioning, OLP и настройкой Safety. Создатель расширения KUKA KRL для VS Code. Сильная база в PLC (Siemens, Mitsubishi) и промышленных протоколах (Profinet, EtherCAT).",
+                summary: "Инженер-автоматизатор (магистр), специализирующийся на интеграции промышленных роботов. Опыт программирования и пусконаладки KUKA, ABB, Fanuc и ESTUN. Владение Virtual Commissioning, OLP и настройкой Safety. Создатель расширения KUKA KRL для VS Code. Сильная база в PLC (Siemens, Mitsubishi) и промышленных протоколах (Profinet, EtherCAT). Готов к международным командировкам.",
                 titles: {
                     contacts: "Контакты", robots: "Роботы", sim: "Симуляция",
-                    apps: "Применения", industrial: "Протоколы & Safety",
-                    dev: "Разработка", exp: "Опыт", edu: "Образование",
-                    langs: "Языки", extra: "Доп. информация", certs: "Обучение"
+                    apps: "Применения", eoat: "EOAT / Оснастка",
+                    industrial: "Протоколы & Safety", dev: "Разработка", exp: "Опыт",
+                    edu: "Образование", langs: "Языки", extra: "Доп. инфо", certs: "Сертификаты"
                 },
                 contact: { loc: "Бурса, Турция", phone: "+90 505 047 6850" },
                 badges: [
@@ -754,6 +771,7 @@
                     { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
                 applications: ["Контактная сварка", "Дуговая сварка", "Паллетирование", "Handling", "Нанесение клея"],
+                eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
                 industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
@@ -770,8 +788,9 @@
                     { icon: "fa-plane", text: "Готов к командировкам" }
                 ],
                 certs: [
-                    "KUKA Programming (внутреннее)",
-                    "ABB RobotStudio Basics"
+                    { name: "ESTUN Robotics", org: "Официальное (Производитель)" },
+                    { name: "FANUC Programming", org: "Офиц. представитель (Турция)" },
+                    { name: "KUKA / ABB / Safety", org: "Внутреннее обучение" }
                 ],
                 exp: [
                     {
@@ -779,10 +798,11 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Наст. время",
                         desc: [
-                            "Программирование и пусконаладка 10+ роботизированных ячеек (KUKA, ABB, ESTUN, Fanuc).",
+                            "Программирование и пусконаладка робототехнических ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома и общей промышленности.",
                             "Virtual commissioning и OLP в RobotStudio, RoboGuide, WorkVisual.",
-                            "Первое внедрение ESTUN по стандартам автопрома.",
-                            "Модульные библиотеки для Paллетирования и Сварки.",
+                            "Первое внедрение ESTUN по стандартам автопрома в компании.",
+                            "Настройка сварочных систем: ARO Servo Guns, горелки Fronius и SKS.",
+                            "Модульные библиотеки для Паллетирования и Сварки.",
                             "Настройка Safety: SafeOperation, SafeMove, CIP Safety.",
                             "PLC интеграция (Siemens S7, Mitsubishi) через Profinet/EtherCAT."
                         ]
@@ -856,6 +876,11 @@
                     </div>
 
                     <div class="sidebar-section">
+                        <h3><i class="fas fa-wrench"></i> ${d.titles.eoat}</h3>
+                        ${d.eoat.map(e => `<span class="eoat-tag">${e}</span>`).join('')}
+                    </div>
+
+                    <div class="sidebar-section">
                         <h3><i class="fas fa-language"></i> ${d.titles.langs}</h3>
                         ${d.langs.map(lg => `<div class="lang-bar"><span class="lang-bar-name">${lg.name}</span><span class="lang-bar-level">${lg.level}</span></div>`).join('')}
                     </div>
@@ -880,6 +905,11 @@
                             <i class="fas fa-code-branch" style="color:white; margin-right:4px"></i> ${d.dev_proj.title}
                          </div>
                          <div style="font-size:0.73rem; color:#ddd; line-height:1.2">${d.dev_proj.desc}</div>
+                    </div>
+
+                    <div class="section-title"><i class="fas fa-certificate"></i> ${d.titles.certs}</div>
+                    <div class="sim-box">
+                        ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> <strong>${c.name}</strong> <span style="color:#888; font-size:0.65rem">(${c.org})</span></div>`).join('')}
                     </div>
 
                     <div class="section-title"><i class="fas fa-cogs"></i> ${d.titles.industrial}</div>
@@ -911,10 +941,7 @@
                                 </div>
                             `).join('')}
                         </div>
-                        <div>
-                            <div class="section-title"><i class="fas fa-certificate"></i> ${d.titles.certs}</div>
-                            ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> ${c}</div>`).join('')}
-                        </div>
+                        <div></div>
                     </div>
                 </div>
             `;
