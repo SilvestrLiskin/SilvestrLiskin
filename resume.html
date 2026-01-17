@@ -4,22 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silvestr Liskin - Expert Robot Programmer</title>
+    <title>Silvestr Liskin - Robot Programmer</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Industrial Palette */
             --orange: #FF5E00;
-            --dark: #202020;
-            --slate: #475569;
-            --light-bg: #F3F4F6;
-            --white: #FFFFFF;
-            --blue: #2563EB;
-            --estun-red: #D32F2F;
-            /* Estun branding color approx */
+            /* KUKA */
+            --yellow: #FFC107;
+            /* Fanuc */
+            --red: #D32F2F;
+            /* Estun */
+            --dark: #121212;
+            --panel: #1E1E1E;
+            --text-main: #E0E0E0;
+            --text-muted: #A0A0A0;
+            --border: #333;
+            --grid-color: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -32,336 +35,460 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #555;
-            color: #333;
-            font-size: 11.5px;
-            /* Compact font */
+            background: #444;
+            color: var(--text-main);
+            font-size: 10.5px;
+            /* Smaller font as requested */
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 30px;
         }
 
+        /* Controls */
         .controls {
             margin-bottom: 20px;
             display: flex;
-            gap: 15px;
-            background: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            gap: 10px;
+            background: #222;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
         }
 
         .lang-btn {
-            border: 1px solid #ddd;
-            background: white;
+            background: #333;
+            color: #ddd;
+            border: 1px solid #444;
+            padding: 6px 12px;
             cursor: pointer;
-            padding: 5px 12px;
-            border-radius: 4px;
+            font-family: 'Chakra Petch', sans-serif;
+            text-transform: uppercase;
             font-weight: 600;
-            font-size: 12px;
-            transition: 0.2s;
+            letter-spacing: 1px;
         }
 
         .lang-btn.active {
             background: var(--orange);
-            color: white;
+            color: black;
             border-color: var(--orange);
         }
 
+        /* Page - Industrial Dark Theme */
         .page {
             width: 210mm;
             min-height: 297mm;
-            background: var(--white);
+            background: var(--dark);
             display: grid;
-            grid-template-columns: 31% 69%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            grid-template-columns: 28% 72%;
+            /* Adjusted column width */
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        /* SIDEBAR */
+        /* Tech Borders */
+        .page::before,
+        .page::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--orange);
+            z-index: 10;
+        }
+
+        .page::before {
+            top: 10px;
+            left: 10px;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .page::after {
+            bottom: 10px;
+            right: 10px;
+            border-left: 0;
+            border-top: 0;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Chakra Petch', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Sidebar */
         .sidebar {
-            background: #151515;
-            color: #ececec;
+            background: rgba(30, 30, 30, 0.95);
+            border-right: 1px solid var(--border);
             padding: 25px 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .photo-wrapper {
-            width: 120px;
-            height: 120px;
-            border-radius: 12px;
-            background: #333;
-            margin: 0 auto 5px auto;
-            position: relative;
-            overflow: hidden;
+        .photo-frame {
+            width: 90px;
+            /* Smaller photo */
+            height: 90px;
+            margin: 0 auto 10px auto;
             border: 2px solid var(--orange);
+            background: #000;
+            position: relative;
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            /* Tech shape */
         }
 
-        .photo-wrapper img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Move face down to fix crop */
             object-position: center 20%;
             transform: scale(1.3);
         }
 
-        .sidebar h3 {
-            font-family: 'Rajdhani', sans-serif;
-            text-transform: uppercase;
+        /* Corner accents for photo */
+        .photo-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--orange);
+        }
+
+        .sidebar-section h3 {
             color: var(--orange);
-            font-size: 1rem;
-            border-bottom: 1px solid #444;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #333;
             padding-bottom: 4px;
             margin-bottom: 10px;
             letter-spacing: 1px;
-        }
-
-        .contact-list {
-            list-style: none;
-            font-size: 0.85rem;
-        }
-
-        .contact-list li {
-            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .contact-list i {
-            color: var(--orange);
-            width: 14px;
-        }
-
-        .contact-list a {
-            color: #ccc;
-            text-decoration: none;
-        }
-
-        .sidebar-section {
-            margin-bottom: 15px;
-        }
-
-        /* Skill Badges (Readme Style) */
-        .skill-badge {
+        .contact-item {
             display: flex;
             align-items: center;
-            background: #2A2A2A;
-            margin-bottom: 6px;
-            border-radius: 3px;
-            overflow: hidden;
+            gap: 10px;
+            margin-bottom: 8px;
             font-size: 0.8rem;
         }
 
-        .badge-icon {
+        .contact-item i {
+            color: var(--orange);
+            width: 14px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        /* Skill Bars / Badges */
+        .tech-badge {
+            background: #252525;
+            border: 1px solid #333;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            height: 24px;
+        }
+
+        .tech-badge-icon {
             width: 24px;
-            height: 20px;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 10px;
+            color: #111;
+            font-weight: bold;
         }
 
-        .badge-text {
-            padding: 2px 8px;
-            color: #ddd;
-            font-weight: 500;
+        .tech-badge-text {
+            padding: 0 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ccc;
+            font-family: 'Chakra Petch', sans-serif;
         }
 
-        /* MAIN */
+        /* Main Content */
         .main {
-            padding: 30px 35px;
+            padding: 30px;
         }
 
         .header {
             margin-bottom: 20px;
-            border-bottom: 3px solid var(--orange);
-            padding-bottom: 10px;
+            border-left: 4px solid var(--orange);
+            padding-left: 15px;
+            position: relative;
         }
 
-        h1 {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 2.6rem;
-            text-transform: uppercase;
+        .name-block h1 {
+            font-size: 2.5rem;
             line-height: 0.9;
-            margin-bottom: 4px;
-            color: #111;
+            color: white;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
         }
 
-        h1 span {
+        .name-block h1 span {
             color: var(--orange);
         }
 
-        .role-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--slate);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .role {
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .summary {
             margin-top: 10px;
-            color: #555;
+            color: #ccc;
             line-height: 1.4;
-            font-size: 0.9rem;
             text-align: justify;
+            font-size: 0.85rem;
+            border-top: 1px solid #333;
+            padding-top: 10px;
         }
 
-        .summary strong {
-            color: var(--dark);
-        }
-
+        /* Sections */
         .section-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.3rem;
-            color: #111;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 12px;
+            color: var(--orange);
+            font-size: 1.1rem;
+            border-bottom: 1px solid #333;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            border-left: 4px solid var(--orange);
-            padding-left: 10px;
+            gap: 10px;
         }
 
-        /* Grid for Hardware / Software */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
+        .section-title i {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
-        .tech-box {
-            background: #F9FAFB;
-            border: 1px solid #E5E7EB;
-            border-radius: 4px;
-            padding: 10px;
-        }
-
-        .tech-head {
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-
-        .flat-tag {
-            font-size: 0.75rem;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
-            color: white;
-        }
-
-        /* Experience */
-        .exp-item {
-            margin-bottom: 18px;
+        /* Experience Items */
+        .job-item {
+            margin-bottom: 15px;
             position: relative;
             padding-left: 15px;
-            border-left: 2px solid #e0e0e0;
+            border-left: 1px dashed #444;
         }
 
-        .exp-item::before {
+        .job-item::before {
             content: '';
             position: absolute;
-            left: -5px;
-            top: 4px;
-            width: 8px;
-            height: 8px;
+            left: -3px;
+            top: 0;
+            width: 5px;
+            height: 5px;
             background: var(--orange);
-            border-radius: 50%;
         }
 
-        .exp-head {
+        .job-head {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 3px;
         }
 
-        .exp-role {
-            font-weight: 700;
+        .job-role {
             font-size: 0.95rem;
-            color: #000;
+            font-weight: 700;
+            color: white;
         }
 
-        .exp-comp {
-            font-weight: 600;
-            color: var(--blue);
+        .job-comp {
+            color: var(--yellow);
             font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .exp-date {
-            font-size: 0.8rem;
+        .job-date {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
             color: #777;
         }
 
-        .exp-desc ul {
+        .job-desc ul {
             list-style: none;
             margin-top: 5px;
         }
 
-        .exp-desc li {
+        .job-desc li {
             position: relative;
             padding-left: 12px;
-            margin-bottom: 2px;
-            color: #444;
+            margin-bottom: 3px;
+            color: #ccc;
             font-size: 0.85rem;
             line-height: 1.35;
         }
 
-        .exp-desc li::before {
-            content: '▪';
-            color: var(--orange);
+        .job-desc li::before {
+            content: '>';
             position: absolute;
             left: 0;
-            font-size: 1.2em;
-            line-height: 0.8;
+            color: var(--orange);
+            font-family: 'JetBrains Mono';
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Dev Card - Special Highlight */
+        .dev-card {
+            background: rgba(255, 94, 0, 0.1);
+            border: 1px solid var(--orange);
+            padding: 12px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .dev-card::before {
+            content: 'OPEN SOURCE';
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            background: var(--dark);
+            padding: 0 5px;
+            font-size: 0.7rem;
+            color: var(--orange);
+            border: 1px solid var(--orange);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Sim Box */
+        .sim-box {
+            background: #1A1A1A;
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sim-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .sim-desc {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.3;
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0;
+
+            body,
+            .page {
+                background: white !important;
+                color: black !important;
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+            }
+
+            .sidebar {
+                background: #f0f0f0 !important;
+                color: black !important;
+                border-right: 1px solid #ccc;
             }
 
             .controls {
                 display: none;
             }
 
+            h1,
+            h2,
+            h3,
+            .role,
+            .photo-frame {
+                color: black !important;
+            }
+
+            .summary,
+            .job-desc li,
+            .sim-desc {
+                color: #333 !important;
+            }
+
+            .tech-badge {
+                background: #e0e0e0 !important;
+                border-color: #ccc !important;
+            }
+
+            .tech-badge-text {
+                color: black !important;
+            }
+
+            .name-block h1 {
+                color: black !important;
+            }
+
+            .name-block h1 span,
+            .section-title,
+            .section-title i {
+                color: var(--orange) !important;
+            }
+
+            .job-role {
+                color: black !important;
+            }
+
+            .job-comp {
+                color: #d32f2f !important;
+            }
+
+            /* Darker red for print readability */
+            .dev-card {
+                background: #fff5f0 !important;
+                border-color: var(--orange) !important;
+            }
+
+            .sim-box {
+                background: #f9f9f9 !important;
+                border-color: #ddd !important;
+            }
+
+            .sim-title {
+                color: black !important;
+            }
+
             .page {
-                width: 100%;
-                height: auto;
-                box-shadow: none;
-                display: grid;
+                background-image: none !important;
             }
 
-            .sidebar {
-                background: #151515 !important;
-                -webkit-print-color-adjust: exact;
-            }
-
-            .flat-tag,
-            .badge-icon,
-            .skill-badge {
-                -webkit-print-color-adjust: exact;
+            /* Remove grid for print */
+            .page::before,
+            .page::after {
+                display: none;
             }
         }
     </style>
@@ -370,55 +497,60 @@
 <body>
 
     <div class="controls">
-        <button class="lang-btn active" onclick="setLang('en')">English</button>
-        <button class="lang-btn" onclick="setLang('tr')">Türkçe</button>
-        <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('tr')">TR</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
     </div>
 
     <div class="page" id="cv-root"></div>
 
     <script>
+        // Helper to parse markdown-like bold syntax
+        function parseMd(text) {
+            return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+
         const content = {
             en: {
-                role: "Senior Industrial Robot Programmer & Integrator",
-                summary: "Expert Robot Programmer specializing in **Virtual Commissioning** and **Offline Programming (OLP)**. Extensive experience integrating **KUKA, ABB, Fanuc, and ESTUN** robots into complex automation lines. Skilled in cycle time optimization, OEE improvement, and digital twin simulation. Verified track record of delivering turnkey projects for automotive giants (JLR, Ford, TOGG suppliers) with expertise in Welding, Palletizing, and Handling standards.",
+                role: "Senior Robot Programmer",
+                summary: "Industrial Robotics Expert with M.Sc. degree. Specializing in **Virtual Commissioning**, **Cycle Time Optimization**, and **Complex System Integration** (KUKA + ESTUN + Fanuc). Creator of the widely used **'KUKA KRL Extension'** for VS Code. Proven record of delivering turnkey projects for global automotive OEMs (JLR, Ford).",
                 titles: {
-                    contacts: "Contact", skills: "Technical Expertise",
-                    exp: "Professional Experience", edu: "Education",
-                    robot_hw: "Robot Systems", sim_sw: "Simulation & OLP",
-                    ind_ks: "Industrial Knowledge", dev_ops: "Dev & Tools"
+                    contacts: "CONTACT DATA", skills: "SYSTEMS & HARDWARE",
+                    exp: "WORK HISTORY", edu: "ACADEMICS",
+                    sim: "SIMULATION & OLP", dev: "DEVELOPMENT",
+                    ind: "INDUSTRIAL TECH"
                 },
                 contact: { loc: "Bursa, Turkey", phone: "+90 505 047 6850" },
-                robots: [
-                    { name: "KUKA KRC4/KRC5", color: "#FF5E00" },
-                    { name: "ABB IRC5/OmniCore", color: "#FF9E00" },
-                    { name: "FANUC R-30iB", color: "#FFC107" }, /* Yellow */
-                    { name: "ESTUN ER Series", color: "#D32F2F" }
+                badges: [
+                    { icon: "K", text: "KUKA KRC4/KRC5", bg: "#FF5E00" },
+                    { icon: "A", text: "ABB IRC5/OmniCore", bg: "#FF9E00" },
+                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
+                    { icon: "E", text: "ESTUN ER Series", bg: "#D32F2F" },
+                    { icon: "S", text: "Siemens S7 PLC", bg: "#009688" }
                 ],
                 software: [
-                    { name: "WorkVisual / KUKA.Sim", color: "#FF5E00" },
-                    { name: "RobotStudio (ABB)", color: "#FF9E00" },
-                    { name: "RoboGuide (Fanuc)", color: "#FFC107" },
-                    { name: "ESTUN Editor", color: "#D32F2F" },
-                    { name: "Process Simulate", color: "#0078D7" }
+                    { name: "WorkVisual / Sim", bg: "#FF5E00" },
+                    { name: "RobotStudio", bg: "#FF9E00" },
+                    { name: "RoboGuide", bg: "#FFC107" },
+                    { name: "Process Simulate", bg: "#2196F3" },
+                    { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
-                industrial: [
-                    "Virtual Commissioning", "Cycle Time Analysis", "OEE Optimization",
-                    "Safety (SafeMove/SafeOp)", "Profinet / EtherCAT", "Spot & Arc Welding"
-                ],
-                dev: ["KRL Expert", "RAPID", "TypeScript", "VS Code", "Git"],
+                industrial_tags: ["Profinet", "EtherCAT", "Safety (CIP/ProfiSafe)", "Servo Guns", "Vision Systems"],
+                dev_proj: {
+                    title: "KUKA KRL VS Code Extension",
+                    desc: "Developed and maintain a popular VS Code extension for KRL programming. Features include syntax highlighting, cold folding, and diagnostics. Used by hundreds of automation engineers worldwide to modernize KUKA workflow."
+                },
                 exp: [
                     {
                         role: "Senior Robot Programmer / Integrator",
                         comp: "Teknorob Robot ve Otomasyon",
-                        date: "Jun 2023 - Present",
+                        date: "2023 - Present",
                         desc: [
-                            "**Turnkey Integration:** Led the programming and commissioning of multi-robot cells for Automotive body-in-white (BiW) and palletizing.",
-                            "**Simulation Specialist:** Conducted extensive **OLP** (Offline Programming) and feasibility studies using **RobotStudio** and **RoboGuide**. Validated reachability, cycle times, and collision zones before physical build.",
-                            "**ESTUN & Chinese Brands:** Pioneered the integration of **ESTUN** robots, translating standard automotive logic (VASS/Ford) to ESTUN Editor environment.",
-                            "**Advanced Logic:** Developed modular standard codebases for Palletizing (Dynamic Layer Generation) and Welding.",
-                            "**Safety Commissioning:** configured CIP Safety and ProfiSafe zones.",
-                            "**Performance:** Optimized legacy cells reducing cycle time by 15% through logic refactoring."
+                            "**Lead Integrator:** Commissioning of multi-brand cells (KUKA, ABB, ESTUN) for BiW and Palletizing.",
+                            "**Simulation Expert:** Extensive OLP in **RobotStudio** & **Process Simulate**. Validating logical interlocks and cycle times before build.",
+                            "**ESTUN Pioneer:** First-in-class integration of **ESTUN** robots using VASS-like standards. Translated automotive logic to ESTUN Editor.",
+                            "**Logic Dev:** Created modular libraries for **Dynamic Layer Palletizing** and **Adaptive Welding**.",
+                            "**Optimization:** Reduced Start-Of-Production (SOP) time by 30% through Digital Twin validation."
                         ]
                     },
                     {
@@ -426,115 +558,115 @@
                         comp: "Ino Machinery",
                         date: "Mar 2022 - Sep 2022",
                         desc: [
-                            "Commissioning of CNC lines and gantry systems.",
-                            "Electrical schematic verification (EPLAN) and I/O checkout.",
-                            "Tuning of servo drives and frequency inverters."
+                            "Commissioning of CNC Gantries and Automation lines.",
+                            "EPLAN schematic varification and I/O signal testing.",
+                            "Drive tuning and frequency inverter setup."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "M.Sc. Electronic Engineering", uni: "Bursa Uludağ University", year: "2018 - 2022" },
-                    { deg: "B.Sc. Electronic Engineering", uni: "Kyrgyz National University", year: "2013 - 2017" }
+                    { deg: "M.Sc. Electronic Engineering", uni: "Bursa Uludağ University", year: "2022" },
+                    { deg: "B.Sc. Electronic Engineering", uni: "Kyrgyz National University", year: "2017" }
                 ]
             },
             tr: {
-                role: "Kıdemli Endüstriyel Robot Programcısı & Entegratör",
-                summary: "**Sanal Devreye Alma (Virtual Commissioning)** ve **Offline Programlama (OLP)** konularında uzmanlaşmış Robot Programcısı. **KUKA, ABB, Fanuc ve ESTUN** robotlarının karmaşık otomasyon hatlarına entegrasyonunda geniş deneyim. Çevrim süresi optimizasyonu, OEE iyileştirme ve dijital ikiz (digital twin) simülasyonlarında yetkin. Otomotiv ana sanayi (TOGG, Ford tedarikçileri) için Kaynak, Paletleme ve Taşıma standartlarında anahtar teslim proje tecrübesi.",
+                role: "Kıdemli Robot Programcısı",
+                summary: "Yüksek Mühendis unvanlı Endüstriyel Robotik Uzmanı. **Sanal Devreye Alma (Virtual Commissioning)**, **Çevrim Süresi Optimizasyonu** ve **Karmaşık Sistem Entegrasyonu** (KUKA + ESTUN + Fanuc) konularında uzman. VS Code için popüler **'KUKA KRL Extension'** geliştiricisi. Küresel otomotiv üreticileri (Ford, JLR) için anahtar teslim proje tesliminde kanıtlanmış deneyim.",
                 titles: {
-                    contacts: "İletişim", skills: "Teknik Yetkinlikler",
-                    exp: "İş Deneyimi", edu: "Eğitim Bilgileri",
-                    robot_hw: "Robot Sistemleri", sim_sw: "Simülasyon & OLP",
-                    ind_ks: "Endüstriyel Bilgi", dev_ops: "Yazılım & Araçlar"
+                    contacts: "İLETİŞİM", skills: "SİSTEMLER & DONANIM",
+                    exp: "İŞ GEÇMİŞİ", edu: "EĞİTİM",
+                    sim: "SİMÜLASYON & OLP", dev: "YAZILIM GELİŞTİRME",
+                    ind: "ENDÜSTRİYEL TEK."
                 },
                 contact: { loc: "Bursa, Türkiye", phone: "+90 505 047 6850" },
-                robots: [
-                    { name: "KUKA KRC4/KRC5", color: "#FF5E00" },
-                    { name: "ABB IRC5/OmniCore", color: "#FF9E00" },
-                    { name: "FANUC R-30iB", color: "#E6B800" },
-                    { name: "ESTUN ER Serisi", color: "#D32F2F" }
+                badges: [
+                    { icon: "K", text: "KUKA KRC4/KRC5", bg: "#FF5E00" },
+                    { icon: "A", text: "ABB IRC5/OmniCore", bg: "#FF9E00" },
+                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
+                    { icon: "E", text: "ESTUN ER Serisi", bg: "#D32F2F" },
+                    { icon: "S", text: "Siemens S7 PLC", bg: "#009688" }
                 ],
                 software: [
-                    { name: "WorkVisual / KUKA.Sim", color: "#FF5E00" },
-                    { name: "RobotStudio (ABB)", color: "#FF9E00" },
-                    { name: "RoboGuide (Fanuc)", color: "#E6B800" },
-                    { name: "ESTUN Editor", color: "#D32F2F" },
-                    { name: "Process Simulate", color: "#0078D7" }
+                    { name: "WorkVisual / Sim", bg: "#FF5E00" },
+                    { name: "RobotStudio", bg: "#FF9E00" },
+                    { name: "RoboGuide", bg: "#FFC107" },
+                    { name: "Process Simulate", bg: "#2196F3" },
+                    { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
-                industrial: [
-                    "Virtual Commissioning", "Cycle Time Analizi", "OEE Optimizasyonu",
-                    "Safety (SafeMove/SafeOp)", "Profinet / EtherCAT", "Punta & Gazaltı Kaynak"
-                ],
-                dev: ["KRL Expert", "RAPID", "TypeScript", "VS Code", "Git"],
+                industrial_tags: ["Profinet", "EtherCAT", "Safety (CIP/ProfiSafe)", "Servo Tabanca", "Vizyon"],
+                dev_proj: {
+                    title: "KUKA KRL VS Code Eklentisi",
+                    desc: "KRL programlama için popüler VS Code eklentisini geliştirdi. Syntax highlighting, cold folding ve hata denetimi içerir. Dünya çapında yüzlerce mühendis tarafından KUKA iş akışını modernleştirmek için kullanılmaktadır."
+                },
                 exp: [
                     {
                         role: "Kıdemli Robot Programcısı / Entegratör",
                         comp: "Teknorob Robot ve Otomasyon",
-                        date: "Haz 2023 - Devam",
+                        date: "2023 - Devam",
                         desc: [
-                            "**Anahtar Teslim Entegrasyon:** Otomotiv gövde (BiW) ve paletleme hatları için çoklu robot hücrelerinin programlanmasını yönetti.",
-                            "**Simülasyon Uzmanlığı:** **RobotStudio** ve **RoboGuide** kullanarak kapsamlı **OLP** çalışmaları yürüttü. Fiziksel kurulum öncesi erişilebilirlik ve çarpışma analizlerini doğruladı.",
-                            "**ESTUN & Çin Markaları:** **ESTUN** robotlarının entegrasyonuna öncülük etti; otomotiv standartlarını ESTUN Editor ortamına uyarladı.",
-                            "**Gelişmiş Lojik:** Dinamik Paletleme ve Kaynak uygulamaları için modüler standart kod yapıları geliştirdi.",
-                            "**Safety Devreye Alma:** CIP Safety ve ProfiSafe bölgelerini yapılandırdı ve doğruladı.",
-                            "**Performans:** Mevcut hücrelerin çevrim sürelerini (Cycle Time) lojik optimizasyon ile %15 iyileştirdi."
+                            "**Lider Entegratör:** BiW ve Paletleme için çok markalı (KUKA, ABB, ESTUN) hücrelerin devreye alınması.",
+                            "**Simülasyon Eksper:** **RobotStudio** ve **Process Simulate** ile kapsamlı OLP. Üretim öncesi lojik ve cycle time doğrulama.",
+                            "**ESTUN Öncüsü:** **ESTUN** robotlarının otomotiv standartlarında (VASS benzeri) entegrasyonu.",
+                            "**Lojik Geliştirme:** **Dinamik Katmanlı Paletleme** ve **Adaptif Kaynak** için modüler kütüphaneler.",
+                            "**Optimizasyon:** Dijital İkiz (Digital Twin) doğrulaması ile SOP süresini %30 kısalttı."
                         ]
                     },
                     {
                         role: "Devreye Alma Mühendisi",
                         comp: "Ino Machinery",
-                        date: "Mart 2022 - Eylül 2022",
+                        date: "Mar 2022 - Eyl 2022",
                         desc: [
-                            "CNC hatları ve gantry sistemlerinin devreye alınması.",
-                            "EPLAN üzerinden elektrik projelerinin kontrolü ve I/O testleri.",
-                            "Servo sürücü ve frekans invertörlerinin parametre ayarları."
+                            "CNC ve Gantry otomasyon hatlarının devreye alınması.",
+                            "EPLAN şema kontrolü ve I/O sinyal testleri.",
+                            "Sürücü ve invertör parametre ayarları."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "Yüksek Lisans, Elektronik Müh.", uni: "Bursa Uludağ Üniversitesi", year: "2018 - 2022" },
-                    { deg: "Lisans, Elektronik Mühendisliği", uni: "Kırgız Milli Üniversitesi", year: "2013 - 2017" }
+                    { deg: "Yüksek Lisans, Elektronik Müh.", uni: "Bursa Uludağ Üniversitesi", year: "2022" },
+                    { deg: "Lisans, Elektronik Mühendisliği", uni: "Kırgız Milli Üniversitesi", year: "2017" }
                 ]
             },
             ru: {
-                role: "Старший программист промышленных роботов",
-                summary: "Эксперт в программировании роботов со специализацией на **Virtual Commissioning** и **Offline Programming (OLP)**. Глубокий опыт интеграции роботов **KUKA, ABB, Fanuc и ESTUN** в сложные производственные линии. Навыки оптимизации времени цикла (Cycle Time), повышения OEE и создания цифровых двойников. Подтвержденный опыт сдачи проектов «под ключ» для поставщиков автопрома (Ford, TOGG).",
+                role: "Старший Программист Роботов",
+                summary: "Эксперт в промышленной робототехнике, Магистр (M.Sc.). Специализация: **Virtual Commissioning**, **Оптимизация цикла** и **Интеграция сложных систем** (KUKA + ESTUN + Fanuc). Создатель популярного расширения **'KUKA KRL Extension'** для VS Code. Опыт сдачи проектов «под ключ» для мировых автопроизводителей.",
                 titles: {
-                    contacts: "Контакты", skills: "Компетенции",
-                    exp: "Опыт работы", edu: "Образование",
-                    robot_hw: "Робототехника (HW)", sim_sw: "Симуляция & OLP",
-                    ind_ks: "Промышленные знания", dev_ops: "Разработка"
+                    contacts: "КОНТАКТЫ", skills: "РОБОТЫ И ПРОТОКОЛЫ",
+                    exp: "ОПЫТ РАБОТЫ", edu: "ОБРАЗОВАНИЕ",
+                    sim: "СИМУЛЯЦИЯ & OLP", dev: "РАЗРАБОТКА ПО",
+                    ind: "ПРОМ. ТЕХНОЛОГИИ"
                 },
                 contact: { loc: "Бурса, Турция", phone: "+90 505 047 6850" },
-                robots: [
-                    { name: "KUKA KRC4/KRC5", color: "#FF5E00" },
-                    { name: "ABB IRC5/OmniCore", color: "#FF9E00" },
-                    { name: "FANUC R-30iB", color: "#E6B800" },
-                    { name: "ESTUN ER Series", color: "#D32F2F" }
+                badges: [
+                    { icon: "K", text: "KUKA KRC4/KRC5", bg: "#FF5E00" },
+                    { icon: "A", text: "ABB IRC5/OmniCore", bg: "#FF9E00" },
+                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
+                    { icon: "E", text: "ESTUN ER Series", bg: "#D32F2F" },
+                    { icon: "S", text: "Siemens S7 PLC", bg: "#009688" }
                 ],
                 software: [
-                    { name: "WorkVisual / KUKA.Sim", color: "#FF5E00" },
-                    { name: "RobotStudio (ABB)", color: "#FF9E00" },
-                    { name: "RoboGuide (Fanuc)", color: "#E6B800" },
-                    { name: "ESTUN Editor", color: "#D32F2F" },
-                    { name: "Process Simulate", color: "#0078D7" }
+                    { name: "WorkVisual / Sim", bg: "#FF5E00" },
+                    { name: "RobotStudio", bg: "#FF9E00" },
+                    { name: "RoboGuide", bg: "#FFC107" },
+                    { name: "Process Simulate", bg: "#2196F3" },
+                    { name: "ESTUN Editor", bg: "#D32F2F" }
                 ],
-                industrial: [
-                    "Virtual Commissioning", "Cycle Time анализ", "OEE Оптимизация",
-                    "Safety (SafeMove/SafeOp)", "Profinet / EtherCAT", "Сварка (Spot/Arc)"
-                ],
-                dev: ["KRL Expert", "RAPID", "TypeScript", "VS Code", "Git"],
+                industrial_tags: ["Profinet", "EtherCAT", "Safety (CIP/ProfiSafe)", "Servo Guns", "Vision Systems"],
+                dev_proj: {
+                    title: "KUKA KRL VS Code Extension",
+                    desc: "Разработал и поддерживаю популярное расширение VS Code для KRL. Функционал: подсветка синтаксиса, фолдинг, диагностика ошибок. Используется инженерами по всему миру для модернизации работы с KUKA."
+                },
                 exp: [
                     {
                         role: "Старший программист роботов / Интегратор",
                         comp: "Teknorob Robot ve Otomasyon",
-                        date: "Июнь 2023 - Наст. время",
+                        date: "2023 - Наст. время",
                         desc: [
-                            "**Интеграция под ключ:** Руководство программированием мульти-роботизированных ячеек для линий сварки кузовов (BiW) и паллетирования.",
-                            "**Эксперт по симуляции:** Проведение масштабных работ по **OLP** (Offline Programming) в **RobotStudio** и **RoboGuide**. Валидация досягаемости (Reachability) и коллизий до физической сборки.",
-                            "**ESTUN & Китайские бренды:** Внедрение роботов **ESTUN**, адаптация стандартов автопрома под среду ESTUN Editor.",
-                            "**Сложная логика:** Разработка модульного кода для динамического паллетирования (Dynamic Layering) и сварки.",
-                            "**Safety Commissioning:** Настройка зон безопасности CIP Safety и ProfiSafe.",
-                            "**Производительность:** Оптимизация существующих линий, сокращение времени цикла на 15% за счет рефакторинга траекторий."
+                            "**Ведущий интегратор:** Запуск мультибрендовых ячеек (KUKA, ABB, ESTUN, Fanuc) для сварки (BiW) и паллетирования.",
+                            "**Эксперт по симуляции:** Глубокая работа в **RobotStudio** и **Process Simulate**. Валидация логики и времени цикла до «железа».",
+                            "**ESTUN Pioneer:** Внедрение роботов **ESTUN** с применением стандартов автопрома. Адаптация логики под ESTUN Editor.",
+                            "**Разработка логики:** Модульные библиотеки для **динамического паллетирования** и **адаптивной сварки**.",
+                            "**Оптимизация:** Сокращение времени запуска (SOP) на 30% благодаря валидации в Digital Twin."
                         ]
                     },
                     {
@@ -542,15 +674,15 @@
                         comp: "Ino Machinery",
                         date: "Март 2022 - Сен 2022",
                         desc: [
-                            "Пусконаладка линий ЧПУ и портальных систем.",
-                            "Проверка электропроектов (EPLAN), тест I/O и приводов.",
-                            "Настройка сервоприводов и частотных преобразователей."
+                            "Пусконаладка портальных систем ЧПУ и автоматизации.",
+                            "Проверка электросхем (EPLAN) и I/O тестирование.",
+                            "Настройка частотных преобразователей и приводов."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "Магистр электронной инженерии", uni: "Университет Улудаг (Bursa Uludağ)", year: "2018 - 2022" },
-                    { deg: "Бакалавр электронной инженерии", uni: "Кыргызский национальный университет", year: "2013 - 2017" }
+                    { deg: "Магистр электронной инженерии", uni: "Университет Улудаг (Bursa Uludağ)", year: "2022" },
+                    { deg: "Бакалавр электронной инженерии", uni: "Кыргызский национальный университет", year: "2017" }
                 ]
             }
         };
@@ -561,94 +693,90 @@
             document.querySelector(`button[onclick="setLang('${l}')"]`).classList.add('active');
 
             const makeBadge = (icon, text, bg) => `
-                <div class="skill-badge" style="border-left: 3px solid ${bg}">
-                    <div class="badge-icon" style="background:${bg}">
-                        <i class="${icon}"></i>
-                    </div>
-                    <div class="badge-text">${text}</div>
+                <div class="tech-badge" style="border-left: 3px solid ${bg}">
+                    <div class="tech-badge-icon" style="background:${bg}; color:black;">${icon}</div>
+                    <div class="tech-badge-text">${text}</div>
                 </div>
             `;
 
             const html = `
                 <div class="sidebar">
-                    <div class="photo-wrapper">
+                    <div class="photo-frame">
                         <img src="profile_photo.png" alt="Silvestr Liskin">
                     </div>
 
                     <div class="sidebar-section">
-                        <h3>${d.titles.contacts}</h3>
-                        <ul class="contact-list">
-                            <li><i class="fas fa-envelope"></i> silvlis@outlook.com</li>
-                            <li><i class="fas fa-phone"></i> ${d.contact.phone}</li>
-                            <li><i class="fas fa-map-marker-alt"></i> ${d.contact.loc}</li>
-                            <li><i class="fab fa-linkedin"></i> linkedin.com/in/silvestr-liskin</li>
-                            <li><i class="fab fa-github"></i> github.com/SilvestrLiskin</li>
-                        </ul>
+                        <h3><i class="fas fa-address-card"></i> ${d.titles.contacts}</h3>
+                        <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:silvlis@outlook.com">silvlis@outlook.com</a></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i> ${d.contact.phone}</div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> ${d.contact.loc}</div>
+                        <div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/silvestr-liskin</div>
+                        <div class="contact-item"><i class="fab fa-github"></i> github.com/SilvestrLiskin</div>
                     </div>
 
                     <div class="sidebar-section">
-                        <h3>${d.titles.robot_hw}</h3>
-                        ${d.robots.map(r => makeBadge('fas fa-robot', r.name, r.color)).join('')}
+                        <h3><i class="fas fa-robot"></i> ${d.titles.skills}</h3>
+                        ${d.badges.map(b => makeBadge(b.icon, b.text, b.bg)).join('')}
                     </div>
 
                     <div class="sidebar-section">
-                        <h3>${d.titles.sim_sw}</h3>
-                        ${d.software.map(s => makeBadge('fas fa-laptop-code', s.name, s.color)).join('')}
-                    </div>
-
-                    <div class="sidebar-section">
-                        <h3>${d.titles.ind_ks}</h3>
-                        ${d.industrial.map(i => makeBadge('fas fa-cogs', i, '#475569')).join('')}
-                    </div>
-
-                    <div class="sidebar-section">
-                        <h3>${d.titles.dev_ops}</h3>
-                        <div class="tag-cloud">
-                            ${d.dev.map(tag => `<span class="flat-tag" style="background:#555">${tag}</span>`).join('')}
-                        </div>
+                        <h3><i class="fas fa-desktop"></i> ${d.titles.sim}</h3>
+                        ${d.software.map(s => makeBadge('<i class="fas fa-tv"></i>', s.name, s.bg)).join('')}
                     </div>
                 </div>
 
                 <div class="main">
                     <div class="header">
-                        <h1>Silvestr <span>Liskin</span></h1>
-                        <div class="role-title">${d.role}</div>
-                        <p class="summary">${d.summary}</p>
+                        <div class="name-block">
+                            <h1>SILVESTR <span>LISKIN</span></h1>
+                        </div>
+                        <div class="role">${d.role}</div>
+                        <div class="summary">${parseMd(d.summary)}</div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-star"></i> EXPERTISE HIGHLIGHTS</div>
-                    <div class="tech-grid">
-                        <div class="tech-box">
-                            <div class="tech-head"><i class="fas fa-vr-cardboard" style="color:var(--blue)"></i> Virtual Commissioning</div>
-                            <div style="font-size:0.8rem; color:#555">Validating Safety zones, PLC handshakes, and Cycle times in digital twins (Process Simulate / RobotStudio) before real startup.</div>
-                        </div>
-                        <div class="tech-box">
-                            <div class="tech-head"><i class="fas fa-network-wired" style="color:var(--orange)"></i> Industrial IoT</div>
-                            <div style="font-size:0.8rem; color:#555">Profinet, EtherCAT, CIP Safety integration across mixed-brand robot cells (KUKA + ESTUN + Fanuc).</div>
-                        </div>
+                    <div class="dev-card">
+                         <div style="font-family:'Chakra Petch'; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:5px">
+                            <i class="fas fa-code-branch" style="color:white; margin-right:5px"></i> ${d.dev_proj.title}
+                         </div>
+                         <div style="font-size:0.85rem; color:#ddd; line-height:1.3">${d.dev_proj.desc}</div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-briefcase"></i> ${d.titles.exp}</div>
-                    ${d.exp.map(e => `
-                        <div class="exp-item">
-                            <div class="exp-head">
-                                <span class="exp-role">${e.role}</span>
-                                <span class="exp-date">${e.date}</span>
+                    <div class="grid-2">
+                        <div class="col">
+                            <div class="section-title"><i class="fas fa-network-wired"></i> ${d.titles.ind}</div>
+                            <div class="sim-box">
+                                <div class="sim-desc">
+                                    ${d.industrial_tags.map(t => `<span style="display:inline-block; background:#333; padding:2px 6px; margin:2px; border-radius:2px; font-size:9px; color:#fff; border:1px solid #555">${t}</span>`).join('')}
+                                </div>
                             </div>
-                            <div class="exp-comp">${e.comp}</div>
-                            <div class="exp-desc">
-                                <ul>${e.desc.map(x => `<li>${x}</li>`).join('')}</ul>
-                            </div>
-                        </div>
-                    `).join('')}
 
-                     <div class="section-title"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
-                     ${d.edu.map(u => `
-                        <div style="margin-bottom:8px">
-                            <div style="font-weight:700; font-size:0.9rem">${u.deg}</div>
-                            <div style="color:#666; font-size:0.85rem">${u.uni} | ${u.year}</div>
+                             <div class="section-title"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
+                             ${d.edu.map(u => `
+                                <div style="margin-bottom:10px">
+                                    <div style="font-weight:700; font-size:0.85rem; color:#eee">${u.deg}</div>
+                                    <div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:#aaa">${u.uni} | ${u.year}</div>
+                                </div>
+                             `).join('')}
                         </div>
-                     `).join('')}
+
+                        <div class="col">
+                            <div class="section-title"><i class="fas fa-briefcase"></i> ${d.titles.exp}</div>
+                            ${d.exp.map(e => `
+                                <div class="job-item">
+                                    <div class="job-head">
+                                        <div class="job-role">${e.role}</div>
+                                    </div>
+                                    <div class="job-head">
+                                        <div class="job-comp">${e.comp}</div>
+                                        <div class="job-date">${e.date}</div>
+                                    </div>
+                                    <div class="job-desc">
+                                        <ul>${e.desc.map(x => `<li>${parseMd(x)}</li>`).join('')}</ul>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
                 </div>
             `;
             document.getElementById('cv-root').innerHTML = html;
