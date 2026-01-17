@@ -480,6 +480,136 @@
             border: 1px solid #555;
         }
 
+        .company-badge {
+            background: linear-gradient(135deg, #1a1a1a, #252525);
+            border: 1px solid var(--orange);
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 0.7rem;
+            color: #ccc;
+            line-height: 1.3;
+        }
+
+        .company-badge strong {
+            color: var(--orange);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media screen and (max-width: 900px) {
+            body {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .page {
+                width: 100%;
+                min-height: auto;
+                grid-template-columns: 1fr;
+                background-size: 10px 10px;
+            }
+
+            .page::before,
+            .page::after {
+                display: none;
+            }
+
+            .sidebar {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .photo-frame {
+                width: 100px;
+                height: 100px;
+            }
+
+            .main {
+                padding: 20px;
+            }
+
+            .name-block h1 {
+                font-size: 1.8rem;
+            }
+
+            .role {
+                font-size: 0.85rem;
+            }
+
+            .summary {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .job-role {
+                font-size: 0.95rem;
+            }
+
+            .job-desc li {
+                font-size: 0.85rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tech-badge {
+                height: 26px;
+            }
+
+            .tech-badge-icon {
+                width: 26px;
+                font-size: 10px;
+            }
+
+            .tech-badge-text {
+                font-size: 0.8rem;
+            }
+
+            .contact-item {
+                font-size: 0.85rem;
+            }
+
+            .lang-bar {
+                font-size: 0.85rem;
+            }
+
+            .extra-item {
+                font-size: 0.85rem;
+            }
+
+            .app-tag,
+            .eoat-tag {
+                font-size: 0.75rem;
+                padding: 3px 6px;
+            }
+
+            .mini-tag {
+                font-size: 0.72rem;
+                padding: 3px 5px;
+            }
+
+            .cert-item {
+                font-size: 0.8rem;
+            }
+
+            .edu-deg {
+                font-size: 0.9rem;
+            }
+
+            .edu-uni {
+                font-size: 0.8rem;
+            }
+        }
+
         @media print {
 
             body,
@@ -543,12 +673,14 @@
                 background: #fff5f0 !important;
             }
 
-            .sim-box {
+            .sim-box,
+            .company-badge {
                 background: #f9f9f9 !important;
             }
 
             .page {
                 background-image: none !important;
+                grid-template-columns: 30% 70%;
             }
 
             .page::before,
@@ -584,13 +716,14 @@
         const content = {
             en: {
                 role: "Industrial Robot Programmer",
-                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Experienced in programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots. Proficient in Virtual Commissioning, Offline Programming (OLP), and Safety configuration. Creator of the KUKA KRL VS Code Extension. Strong background in PLC integration (Siemens, Mitsubishi) and industrial protocols (Profinet, EtherCAT). Ready for international business travel.",
+                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Experienced in programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots for automotive and general industry. Proficient in Virtual Commissioning, Offline Programming (OLP), and Safety configuration. Creator of the KUKA KRL VS Code Extension used by engineers worldwide. Ready for international business travel.",
                 titles: {
                     contacts: "Contact", robots: "Robots", sim: "Simulation",
                     apps: "Applications", eoat: "EOAT / Tooling",
                     industrial: "Protocols & Safety", dev: "Dev", exp: "Experience",
                     edu: "Education", langs: "Languages", extra: "Additional", certs: "Certifications"
                 },
+                company_info: "Working at <strong>ABB & KUKA Solution Partner</strong> with <strong>400+ completed projects</strong> across <strong>12 countries</strong>.",
                 contact: { loc: "Bursa, Turkey", phone: "+90 505 047 6850" },
                 badges: [
                     { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
@@ -606,7 +739,7 @@
                 ],
                 applications: ["Spot Welding", "Arc Welding", "Palletizing", "Handling", "Glueing/Sealing"],
                 eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
+                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Integration)", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
                     desc: "Developed a popular VS Code extension for KRL. Syntax highlighting, code folding, diagnostics. Used by hundreds of engineers worldwide."
@@ -614,12 +747,13 @@
                 langs: [
                     { name: "Russian", level: "Native" },
                     { name: "Turkish", level: "Fluent (C1)" },
-                    { name: "English", level: "Professional" },
+                    { name: "English", level: "Basic (A2)" },
                     { name: "Kyrgyz", level: "Intermediate" }
                 ],
                 extra: [
                     { icon: "fa-car", text: "Driver's License (B)" },
-                    { icon: "fa-plane", text: "Ready for Business Travel" }
+                    { icon: "fa-plane", text: "Ready for Business Travel" },
+                    { icon: "fa-passport", text: "Valid Passport" }
                 ],
                 certs: [
                     { name: "ESTUN Robotics", org: "Official (Manufacturer)" },
@@ -632,13 +766,13 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Present",
                         desc: [
-                            "Programming and commissioning of robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive and general industry.",
+                            "Programming and commissioning of robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive BiW and general industry.",
                             "Virtual commissioning and OLP using RobotStudio, RoboGuide, WorkVisual.",
                             "Integration of ESTUN robots with automotive-grade standards (first implementation in company).",
                             "Configuration of Spot/Arc Welding systems: ARO Servo Guns, Fronius and SKS torches.",
                             "Development of modular code libraries for Palletizing and Welding applications.",
                             "Safety configuration: SafeOperation, SafeMove, CIP Safety zones.",
-                            "PLC integration (Siemens S7, Mitsubishi) via Profinet/EtherCAT."
+                            "PLC integration with Siemens S7 via Profinet/EtherCAT."
                         ]
                     },
                     {
@@ -656,7 +790,8 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Automotive electronics maintenance and diagnostics."
+                            "Automotive electronics maintenance and diagnostics.",
+                            "Repair of control units and sensor systems."
                         ]
                     }
                 ],
@@ -667,13 +802,14 @@
             },
             tr: {
                 role: "Endüstriyel Robot Programcısı",
-                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Yüksek Müh.). KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması ve devreye alınmasında deneyimli. Virtual Commissioning, OLP ve Safety yapılandırmasında yetkin. KUKA KRL VS Code Eklentisinin geliştiricisi. PLC entegrasyonu (Siemens, Mitsubishi) ve endüstriyel protokollerde güçlü altyapı. Uluslararası seyahate hazır.",
+                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Yüksek Müh.). Otomotiv ve genel endüstri için KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması ve devreye alınmasında deneyimli. Virtual Commissioning, OLP ve Safety yapılandırmasında yetkin. Dünya çapında mühendisler tarafından kullanılan KUKA KRL VS Code Eklentisinin geliştiricisi. Uluslararası seyahate hazır.",
                 titles: {
                     contacts: "İletişim", robots: "Robotlar", sim: "Simülasyon",
                     apps: "Uygulamalar", eoat: "EOAT / Ekipman",
                     industrial: "Protokoller & Safety", dev: "Yazılım", exp: "Deneyim",
                     edu: "Eğitim", langs: "Diller", extra: "Ek Bilgi", certs: "Sertifikalar"
                 },
+                company_info: "<strong>ABB & KUKA Çözüm Ortağı</strong> olan firmada çalışmakta, <strong>12 ülkede 400+ tamamlanmış proje</strong> deneyimi.",
                 contact: { loc: "Bursa, Türkiye", phone: "+90 505 047 6850" },
                 badges: [
                     { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
@@ -689,7 +825,7 @@
                 ],
                 applications: ["Punta Kaynak", "Gazaltı Kaynak", "Paletleme", "Taşıma", "Yapıştırma"],
                 eoat: ["ARO Servo Tabanca", "Fronius Torch", "SKS Torch", "Özel Gripper"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
+                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Entegrasyon)", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Eklentisi",
                     desc: "KRL için popüler VS Code eklentisi. Syntax highlighting, code folding, hata denetimi. Dünya çapında yüzlerce mühendis kullanıyor."
@@ -697,12 +833,13 @@
                 langs: [
                     { name: "Rusça", level: "Anadil" },
                     { name: "Türkçe", level: "Akıcı (C1)" },
-                    { name: "İngilizce", level: "Profesyonel" },
+                    { name: "İngilizce", level: "Başlangıç (A2)" },
                     { name: "Kırgızca", level: "Orta" }
                 ],
                 extra: [
                     { icon: "fa-car", text: "Ehliyet (B Sınıfı)" },
-                    { icon: "fa-plane", text: "Seyahate Hazır" }
+                    { icon: "fa-plane", text: "Seyahate Hazır" },
+                    { icon: "fa-passport", text: "Geçerli Pasaport" }
                 ],
                 certs: [
                     { name: "ESTUN Robotik", org: "Üretici Resmi Eğitimi" },
@@ -715,13 +852,13 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Devam",
                         desc: [
-                            "Otomotiv ve genel endüstri için robotik hücrelerin (KUKA, ABB, ESTUN, Fanuc) programlanması ve devreye alınması.",
+                            "Otomotiv BiW ve genel endüstri için robotik hücrelerin (KUKA, ABB, ESTUN, Fanuc) programlanması ve devreye alınması.",
                             "RobotStudio, RoboGuide, WorkVisual ile virtual commissioning ve OLP.",
                             "ESTUN robotlarının otomotiv standartlarında entegrasyonu (şirkette ilk uygulama).",
                             "Punta/Gazaltı Kaynak sistemlerinin yapılandırması: ARO Servo Tabanca, Fronius ve SKS torch.",
                             "Paletleme ve Kaynak uygulamaları için modüler kod kütüphaneleri.",
                             "Safety sistemleri: SafeOperation, SafeMove, CIP Safety.",
-                            "PLC entegrasyonu (Siemens S7, Mitsubishi) Profinet/EtherCAT."
+                            "Siemens S7 PLC entegrasyonu Profinet/EtherCAT üzerinden."
                         ]
                     },
                     {
@@ -739,7 +876,8 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Otomotiv elektroniği bakım ve arıza tespiti."
+                            "Otomotiv elektroniği bakım ve arıza tespiti.",
+                            "Kontrol üniteleri ve sensör sistemlerinin tamiri."
                         ]
                     }
                 ],
@@ -750,13 +888,14 @@
             },
             ru: {
                 role: "Программист промышленных роботов",
-                summary: "Инженер-автоматизатор (магистр), специализирующийся на интеграции промышленных роботов. Опыт программирования и пусконаладки KUKA, ABB, Fanuc и ESTUN. Владение Virtual Commissioning, OLP и настройкой Safety. Создатель расширения KUKA KRL для VS Code. Сильная база в PLC (Siemens, Mitsubishi) и промышленных протоколах (Profinet, EtherCAT). Готов к международным командировкам.",
+                summary: "Инженер-автоматизатор (магистр), специализирующийся на интеграции промышленных роботов. Опыт программирования и пусконаладки KUKA, ABB, Fanuc и ESTUN для автопрома и общей промышленности. Владение Virtual Commissioning, OLP и настройкой Safety. Создатель расширения KUKA KRL для VS Code, используемого инженерами по всему миру. Готов к международным командировкам.",
                 titles: {
                     contacts: "Контакты", robots: "Роботы", sim: "Симуляция",
                     apps: "Применения", eoat: "EOAT / Оснастка",
                     industrial: "Протоколы & Safety", dev: "Разработка", exp: "Опыт",
                     edu: "Образование", langs: "Языки", extra: "Доп. инфо", certs: "Сертификаты"
                 },
+                company_info: "Работаю в компании — <strong>партнёре ABB & KUKA</strong>. <strong>400+ завершённых проектов</strong> в <strong>12 странах</strong>.",
                 contact: { loc: "Бурса, Турция", phone: "+90 505 047 6850" },
                 badges: [
                     { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
@@ -772,7 +911,7 @@
                 ],
                 applications: ["Контактная сварка", "Дуговая сварка", "Паллетирование", "Handling", "Нанесение клея"],
                 eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7", "Mitsubishi", "SafeOperation", "SafeMove", "CIP Safety"],
+                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Интеграция)", "SafeOperation", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
                     desc: "Разработал расширение VS Code для KRL. Подсветка, фолдинг, диагностика. Используется сотнями инженеров по всему миру."
@@ -780,12 +919,13 @@
                 langs: [
                     { name: "Русский", level: "Родной" },
                     { name: "Турецкий", level: "Свободно (C1)" },
-                    { name: "Английский", level: "Профессиональный" },
+                    { name: "Английский", level: "Базовый (A2)" },
                     { name: "Киргизский", level: "Средний" }
                 ],
                 extra: [
                     { icon: "fa-car", text: "Водительские права (кат. B)" },
-                    { icon: "fa-plane", text: "Готов к командировкам" }
+                    { icon: "fa-plane", text: "Готов к командировкам" },
+                    { icon: "fa-passport", text: "Действующий загранпаспорт" }
                 ],
                 certs: [
                     { name: "ESTUN Robotics", org: "Официальное (Производитель)" },
@@ -798,13 +938,13 @@
                         comp: "Teknorob Robot ve Otomasyon",
                         date: "2023 - Наст. время",
                         desc: [
-                            "Программирование и пусконаладка робототехнических ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома и общей промышленности.",
+                            "Программирование и пусконаладка робототехнических ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома BiW и общей промышленности.",
                             "Virtual commissioning и OLP в RobotStudio, RoboGuide, WorkVisual.",
                             "Первое внедрение ESTUN по стандартам автопрома в компании.",
                             "Настройка сварочных систем: ARO Servo Guns, горелки Fronius и SKS.",
                             "Модульные библиотеки для Паллетирования и Сварки.",
                             "Настройка Safety: SafeOperation, SafeMove, CIP Safety.",
-                            "PLC интеграция (Siemens S7, Mitsubishi) через Profinet/EtherCAT."
+                            "Интеграция с Siemens S7 через Profinet/EtherCAT."
                         ]
                     },
                     {
@@ -822,7 +962,8 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Обслуживание и диагностика автоэлектроники."
+                            "Обслуживание и диагностика автоэлектроники.",
+                            "Ремонт блоков управления и сенсорных систем."
                         ]
                     }
                 ],
@@ -856,8 +997,8 @@
                         <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:silvlis@outlook.com">silvlis@outlook.com</a></div>
                         <div class="contact-item"><i class="fas fa-phone"></i> ${d.contact.phone}</div>
                         <div class="contact-item"><i class="fas fa-map-marker-alt"></i> ${d.contact.loc}</div>
-                        <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="#">linkedin.com/in/silvestr-liskin</a></div>
-                        <div class="contact-item"><i class="fab fa-github"></i> <a href="#">github.com/SilvestrLiskin</a></div>
+                        <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/silvestr-liskin">linkedin.com/in/silvestr-liskin</a></div>
+                        <div class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/SilvestrLiskin">github.com/SilvestrLiskin</a></div>
                     </div>
 
                     <div class="sidebar-section">
@@ -898,6 +1039,10 @@
                         </div>
                         <div class="role">${d.role}</div>
                         <div class="summary">${d.summary}</div>
+                    </div>
+
+                    <div class="company-badge">
+                        <i class="fas fa-building" style="color:var(--orange); margin-right:5px"></i> ${d.company_info}
                     </div>
 
                     <div class="dev-card">
