@@ -14,6 +14,7 @@
             --orange: #FF5E00;
             --yellow: #FFC107;
             --red: #D32F2F;
+            --green: #4CAF50;
             --dark: #121212;
             --panel: #1E1E1E;
             --text-main: #E0E0E0;
@@ -127,13 +128,18 @@
             padding: 20px 15px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 85px;
+            margin: 0 auto 5px auto;
         }
 
         .photo-frame {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 5px auto;
+            width: 85px;
+            height: 85px;
             border: 2px solid var(--orange);
             background: #000;
             position: relative;
@@ -158,13 +164,44 @@
             background: var(--orange);
         }
 
+        /* Open to Work Badge */
+        .open-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green);
+            color: white;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+            }
+        }
+
         .sidebar-section {
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .sidebar-section h3 {
             color: var(--orange);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             border-bottom: 1px solid #333;
             padding-bottom: 3px;
             margin-bottom: 6px;
@@ -175,22 +212,22 @@
         }
 
         .sidebar-section h3 i {
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-bottom: 5px;
-            font-size: 0.72rem;
+            margin-bottom: 4px;
+            font-size: 0.7rem;
         }
 
         .contact-item i {
             color: var(--orange);
-            width: 11px;
+            width: 10px;
             text-align: center;
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .contact-item a {
@@ -198,40 +235,50 @@
             text-decoration: none;
         }
 
-        .tech-badge {
-            background: #252525;
-            border: 1px solid #333;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            height: 20px;
+        /* Progress Bars for Skills */
+        .skill-bar {
+            margin-bottom: 6px;
         }
 
-        .tech-badge-icon {
-            width: 20px;
-            height: 100%;
+        .skill-bar-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            color: #111;
-            font-weight: bold;
+            margin-bottom: 2px;
         }
 
-        .tech-badge-text {
-            padding: 0 5px;
-            font-size: 0.68rem;
+        .skill-bar-name {
+            font-size: 0.7rem;
             font-weight: 600;
-            color: #ccc;
+            color: #ddd;
             font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .skill-bar-pct {
+            font-size: 0.6rem;
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .skill-bar-track {
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
         }
 
         .lang-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 4px;
-            font-size: 0.72rem;
+            margin-bottom: 3px;
+            font-size: 0.7rem;
         }
 
         .lang-bar-name {
@@ -241,34 +288,69 @@
         .lang-bar-level {
             color: var(--orange);
             font-weight: 600;
-            font-size: 0.68rem;
+            font-size: 0.65rem;
         }
 
         .extra-item {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-            font-size: 0.72rem;
+            gap: 5px;
+            margin-bottom: 3px;
+            font-size: 0.68rem;
             color: #ccc;
         }
 
         .extra-item i {
             color: var(--orange);
-            width: 12px;
+            width: 10px;
             text-align: center;
-            font-size: 9px;
+            font-size: 8px;
         }
 
         .app-tag {
             display: inline-block;
             background: #333;
-            padding: 2px 5px;
+            padding: 2px 4px;
             margin: 1px;
             border-radius: 2px;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #fff;
             border-left: 2px solid var(--orange);
+        }
+
+        .eoat-tag {
+            display: inline-block;
+            background: #2d2d2d;
+            padding: 2px 4px;
+            margin: 1px;
+            border-radius: 2px;
+            font-size: 0.58rem;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        /* QR Code */
+        .qr-section {
+            text-align: center;
+            margin-top: 5px;
+            padding-top: 8px;
+            border-top: 1px dashed #333;
+        }
+
+        .qr-section img {
+            width: 60px;
+            height: 60px;
+            background: white;
+            padding: 3px;
+            border-radius: 4px;
+        }
+
+        .qr-label {
+            font-size: 0.55rem;
+            color: #888;
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* MAIN */
@@ -277,7 +359,7 @@
         }
 
         .header {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border-left: 4px solid var(--orange);
             padding-left: 10px;
         }
@@ -295,27 +377,59 @@
         }
 
         .role {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             letter-spacing: 2px;
             font-weight: 600;
         }
 
         .summary {
-            margin-top: 8px;
+            margin-top: 6px;
             color: #bbb;
-            line-height: 1.3;
+            line-height: 1.25;
             text-align: justify;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             border-top: 1px solid #333;
             padding-top: 6px;
         }
 
+        /* Stats Counter */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #1a1a1a, #252525);
+            border: 1px solid #333;
+            padding: 10px 5px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .stat-number {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 3px;
+        }
+
         .section-title {
             color: var(--orange);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-bottom: 1px solid #333;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             padding-bottom: 3px;
             display: flex;
             align-items: center;
@@ -323,15 +437,15 @@
         }
 
         .section-title i {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0.8;
         }
 
         .dev-card {
             background: rgba(255, 94, 0, 0.08);
             border: 1px solid var(--orange);
-            padding: 8px;
-            margin-bottom: 12px;
+            padding: 7px;
+            margin-bottom: 10px;
             position: relative;
         }
 
@@ -342,7 +456,7 @@
             right: 6px;
             background: var(--dark);
             padding: 0 3px;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             color: var(--orange);
             border: 1px solid var(--orange);
             font-family: 'Chakra Petch';
@@ -350,7 +464,7 @@
         }
 
         .job-item {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             position: relative;
             padding-left: 10px;
             border-left: 1px dashed #444;
@@ -370,39 +484,39 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .job-role {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: white;
         }
 
         .job-comp {
             color: var(--yellow);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
         }
 
         .job-date {
             font-family: 'JetBrains Mono';
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             color: #777;
         }
 
         .job-desc ul {
             list-style: none;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         .job-desc li {
             position: relative;
-            padding-left: 9px;
-            margin-bottom: 2px;
+            padding-left: 8px;
+            margin-bottom: 1px;
             color: #ccc;
-            font-size: 0.75rem;
-            line-height: 1.25;
+            font-size: 0.7rem;
+            line-height: 1.2;
         }
 
         .job-desc li::before {
@@ -412,86 +526,61 @@
             color: var(--orange);
             font-family: 'JetBrains Mono';
             font-weight: bold;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         .sim-box {
             background: #1A1A1A;
             border: 1px solid #333;
-            padding: 6px;
-            margin-bottom: 10px;
+            padding: 5px;
+            margin-bottom: 8px;
         }
 
         .mini-tag {
             display: inline-block;
             background: #333;
-            padding: 2px 4px;
+            padding: 2px 3px;
             margin: 1px;
             border-radius: 2px;
-            font-size: 0.62rem;
+            font-size: 0.58rem;
             color: #fff;
             border: 1px solid #444;
         }
 
         .edu-item {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .edu-deg {
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: #eee;
         }
 
         .edu-uni {
             font-family: 'JetBrains Mono';
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             color: #aaa;
         }
 
         .cert-item {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-            font-size: 0.72rem;
+            gap: 5px;
+            margin-bottom: 3px;
+            font-size: 0.68rem;
             color: #ccc;
         }
 
         .cert-item i {
             color: #4CAF50;
-            font-size: 9px;
-        }
-
-        .eoat-tag {
-            display: inline-block;
-            background: #2d2d2d;
-            padding: 2px 5px;
-            margin: 1px;
-            border-radius: 2px;
-            font-size: 0.62rem;
-            color: #fff;
-            border: 1px solid #555;
-        }
-
-        .company-badge {
-            background: linear-gradient(135deg, #1a1a1a, #252525);
-            border: 1px solid var(--orange);
-            padding: 8px;
-            margin-bottom: 12px;
-            font-size: 0.7rem;
-            color: #ccc;
-            line-height: 1.3;
-        }
-
-        .company-badge strong {
-            color: var(--orange);
+            font-size: 8px;
         }
 
         /* MOBILE RESPONSIVE */
@@ -518,6 +607,10 @@
                 gap: 15px;
             }
 
+            .photo-container {
+                width: 100px;
+            }
+
             .photo-frame {
                 width: 100px;
                 height: 100px;
@@ -531,24 +624,12 @@
                 font-size: 1.8rem;
             }
 
-            .role {
-                font-size: 0.85rem;
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .summary {
-                font-size: 0.85rem;
-            }
-
-            .section-title {
-                font-size: 1rem;
-            }
-
-            .job-role {
-                font-size: 0.95rem;
-            }
-
-            .job-desc li {
-                font-size: 0.85rem;
+            .stat-number {
+                font-size: 1.6rem;
             }
 
             .grid-2 {
@@ -561,52 +642,17 @@
                 justify-content: center;
             }
 
-            .tech-badge {
-                height: 26px;
-            }
-
-            .tech-badge-icon {
-                width: 26px;
-                font-size: 10px;
-            }
-
-            .tech-badge-text {
-                font-size: 0.8rem;
-            }
-
-            .contact-item {
+            .skill-bar-name {
                 font-size: 0.85rem;
             }
 
-            .lang-bar {
-                font-size: 0.85rem;
+            .skill-bar-track {
+                height: 8px;
             }
 
-            .extra-item {
-                font-size: 0.85rem;
-            }
-
-            .app-tag,
-            .eoat-tag {
-                font-size: 0.75rem;
-                padding: 3px 6px;
-            }
-
-            .mini-tag {
-                font-size: 0.72rem;
-                padding: 3px 5px;
-            }
-
-            .cert-item {
-                font-size: 0.8rem;
-            }
-
-            .edu-deg {
-                font-size: 0.9rem;
-            }
-
-            .edu-uni {
-                font-size: 0.8rem;
+            .qr-section img {
+                width: 80px;
+                height: 80px;
             }
         }
 
@@ -643,15 +689,6 @@
                 color: #333 !important;
             }
 
-            .tech-badge {
-                background: #e8e8e8 !important;
-                border-color: #ccc !important;
-            }
-
-            .tech-badge-text {
-                color: black !important;
-            }
-
             .name-block h1 {
                 color: black !important;
             }
@@ -669,12 +706,12 @@
                 color: #c00 !important;
             }
 
-            .dev-card {
+            .dev-card,
+            .stat-box {
                 background: #fff5f0 !important;
             }
 
-            .sim-box,
-            .company-badge {
+            .sim-box {
                 background: #f9f9f9 !important;
             }
 
@@ -688,15 +725,20 @@
                 display: none;
             }
 
-            .lang-bar-name,
-            .extra-item,
-            .cert-item {
-                color: #333 !important;
+            .skill-bar-track {
+                background: #ddd !important;
             }
 
-            .contact-item,
-            .contact-item a {
-                color: #333 !important;
+            .open-badge {
+                animation: none;
+            }
+
+            @keyframes pulse {
+
+                0%,
+                100% {
+                    box-shadow: none;
+                }
             }
         }
     </style>
@@ -716,280 +758,303 @@
         const content = {
             en: {
                 role: "Industrial Robot Programmer",
-                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Experienced in programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots for automotive and general industry. Proficient in Virtual Commissioning, Offline Programming (OLP), and Safety configuration. Creator of the KUKA KRL VS Code Extension used by engineers worldwide. Ready for international business travel.",
+                summary: "Automation Engineer (M.Sc.) specializing in Industrial Robotics Integration. Programming and commissioning KUKA, ABB, Fanuc, and ESTUN robots for automotive and general industry. Creator of the KUKA KRL VS Code Extension. Ready for international business travel.",
                 titles: {
-                    contacts: "Contact", robots: "Robots", sim: "Simulation",
-                    apps: "Applications", eoat: "EOAT / Tooling",
-                    industrial: "Protocols & Safety", dev: "Dev", exp: "Experience",
+                    contacts: "Contact", robots: "Robot Skills", sim: "Simulation",
+                    apps: "Applications", eoat: "EOAT",
+                    industrial: "Protocols & Safety", exp: "Experience",
                     edu: "Education", langs: "Languages", extra: "Additional", certs: "Certifications"
                 },
-                company_info: "Working at <strong>ABB & KUKA Solution Partner</strong> with <strong>400+ completed projects</strong> across <strong>12 countries</strong>.",
+                open_badge: "Open to Work",
+                qr_label: "Scan for LinkedIn",
+                stats: [
+                    { num: "4", label: "Robot Brands" },
+                    { num: "10+", label: "Cells Built" },
+                    { num: "400+", label: "Company Projects" },
+                    { num: "12", label: "Countries" }
+                ],
                 contact: { loc: "Bursa, Turkey", phone: "+90 505 047 6850" },
-                badges: [
-                    { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
-                    { icon: "A", text: "ABB IRC5", bg: "#FF9E00" },
-                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
-                    { icon: "E", text: "ESTUN ER", bg: "#D32F2F" }
+                skills: [
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
                 ],
                 software: [
-                    { name: "WorkVisual", bg: "#FF5E00" },
-                    { name: "RobotStudio", bg: "#FF9E00" },
-                    { name: "RoboGuide", bg: "#FFC107" },
-                    { name: "ESTUN Editor", bg: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
+                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
                 ],
-                applications: ["Spot Welding", "Arc Welding", "Palletizing", "Handling", "Glueing/Sealing"],
-                eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Integration)", "SafeOperation", "SafeMove", "CIP Safety"],
+                applications: ["Spot Welding", "Arc Welding", "Palletizing", "Handling", "Glueing"],
+                eoat: ["ARO Servo", "Fronius", "SKS", "Custom Grip"],
+                industrial_tags: ["Profinet", "EtherCAT", "Siemens S7", "SafeOp", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
-                    desc: "Developed a popular VS Code extension for KRL. Syntax highlighting, code folding, diagnostics. Used by hundreds of engineers worldwide."
+                    desc: "Popular extension for KRL: syntax, folding, diagnostics. Used by hundreds of engineers."
                 },
                 langs: [
                     { name: "Russian", level: "Native" },
-                    { name: "Turkish", level: "Fluent (C1)" },
-                    { name: "English", level: "Basic (A2)" },
+                    { name: "Turkish", level: "Fluent" },
+                    { name: "English", level: "Basic" },
                     { name: "Kyrgyz", level: "Intermediate" }
                 ],
                 extra: [
                     { icon: "fa-car", text: "Driver's License (B)" },
-                    { icon: "fa-plane", text: "Ready for Business Travel" },
+                    { icon: "fa-plane", text: "Ready for Travel" },
                     { icon: "fa-passport", text: "Valid Passport" }
                 ],
                 certs: [
-                    { name: "ESTUN Robotics", org: "Official (Manufacturer)" },
-                    { name: "FANUC Programming", org: "Official Rep. (Turkey)" },
-                    { name: "KUKA / ABB / Safety", org: "Internal Training" }
+                    { name: "ESTUN", org: "Official" },
+                    { name: "FANUC", org: "Turkey Rep." },
+                    { name: "KUKA/ABB", org: "Internal" }
                 ],
                 exp: [
                     {
                         role: "Robot Programmer / Integrator",
-                        comp: "Teknorob Robot ve Otomasyon",
+                        comp: "Teknorob (ABB & KUKA Partner)",
                         date: "2023 - Present",
                         desc: [
-                            "Programming and commissioning of robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive BiW and general industry.",
-                            "Virtual commissioning and OLP using RobotStudio, RoboGuide, WorkVisual.",
-                            "Integration of ESTUN robots with automotive-grade standards (first implementation in company).",
-                            "Configuration of Spot/Arc Welding systems: ARO Servo Guns, Fronius and SKS torches.",
-                            "Development of modular code libraries for Palletizing and Welding applications.",
-                            "Safety configuration: SafeOperation, SafeMove, CIP Safety zones.",
-                            "PLC integration with Siemens S7 via Profinet/EtherCAT."
+                            "Programming robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive BiW.",
+                            "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
+                            "First ESTUN integration with automotive standards in company.",
+                            "Welding systems: ARO Servo Guns, Fronius, SKS torches.",
+                            "Safety: SafeOperation, SafeMove, CIP Safety zones.",
+                            "PLC integration with Siemens S7 via Profinet."
                         ]
                     },
                     {
                         role: "Commissioning Engineer",
                         comp: "Ino Machinery",
-                        date: "Mar 2022 - Sep 2022",
+                        date: "Mar - Sep 2022",
                         desc: [
-                            "Commissioning of CNC gantries and automation lines.",
-                            "EPLAN verification and I/O testing.",
-                            "Servo drive tuning and inverter setup."
+                            "CNC gantries and automation lines commissioning.",
+                            "EPLAN verification, I/O testing, servo tuning."
                         ]
                     },
                     {
-                        role: "Electronic Technician (Intern)",
+                        role: "Electronic Technician",
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Automotive electronics maintenance and diagnostics.",
-                            "Repair of control units and sensor systems."
+                            "Automotive electronics diagnostics and repair."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "M.Sc. Electronic Engineering", uni: "Bursa Uludağ University", year: "2022" },
-                    { deg: "B.Sc. Electronic Engineering", uni: "Kyrgyz National University", year: "2017" }
+                    { deg: "M.Sc. Electronic Eng.", uni: "Uludağ University", year: "2022" },
+                    { deg: "B.Sc. Electronic Eng.", uni: "Kyrgyz National Uni.", year: "2017" }
                 ]
             },
             tr: {
                 role: "Endüstriyel Robot Programcısı",
-                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Yüksek Müh.). Otomotiv ve genel endüstri için KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması ve devreye alınmasında deneyimli. Virtual Commissioning, OLP ve Safety yapılandırmasında yetkin. Dünya çapında mühendisler tarafından kullanılan KUKA KRL VS Code Eklentisinin geliştiricisi. Uluslararası seyahate hazır.",
+                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Y.Müh.). KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması. KUKA KRL VS Code Eklentisinin geliştiricisi. Uluslararası seyahate hazır.",
                 titles: {
-                    contacts: "İletişim", robots: "Robotlar", sim: "Simülasyon",
-                    apps: "Uygulamalar", eoat: "EOAT / Ekipman",
-                    industrial: "Protokoller & Safety", dev: "Yazılım", exp: "Deneyim",
+                    contacts: "İletişim", robots: "Robot Becerileri", sim: "Simülasyon",
+                    apps: "Uygulamalar", eoat: "EOAT",
+                    industrial: "Protokoller & Safety", exp: "Deneyim",
                     edu: "Eğitim", langs: "Diller", extra: "Ek Bilgi", certs: "Sertifikalar"
                 },
-                company_info: "<strong>ABB & KUKA Çözüm Ortağı</strong> olan firmada çalışmakta, <strong>12 ülkede 400+ tamamlanmış proje</strong> deneyimi.",
+                open_badge: "İşe Açık",
+                qr_label: "LinkedIn için Tara",
+                stats: [
+                    { num: "4", label: "Robot Markası" },
+                    { num: "10+", label: "Hücre" },
+                    { num: "400+", label: "Şirket Projesi" },
+                    { num: "12", label: "Ülke" }
+                ],
                 contact: { loc: "Bursa, Türkiye", phone: "+90 505 047 6850" },
-                badges: [
-                    { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
-                    { icon: "A", text: "ABB IRC5", bg: "#FF9E00" },
-                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
-                    { icon: "E", text: "ESTUN ER", bg: "#D32F2F" }
+                skills: [
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
                 ],
                 software: [
-                    { name: "WorkVisual", bg: "#FF5E00" },
-                    { name: "RobotStudio", bg: "#FF9E00" },
-                    { name: "RoboGuide", bg: "#FFC107" },
-                    { name: "ESTUN Editor", bg: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
+                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
                 ],
-                applications: ["Punta Kaynak", "Gazaltı Kaynak", "Paletleme", "Taşıma", "Yapıştırma"],
-                eoat: ["ARO Servo Tabanca", "Fronius Torch", "SKS Torch", "Özel Gripper"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Entegrasyon)", "SafeOperation", "SafeMove", "CIP Safety"],
+                applications: ["Punta Kaynak", "Gazaltı", "Paletleme", "Taşıma", "Yapıştırma"],
+                eoat: ["ARO Servo", "Fronius", "SKS", "Özel Grip"],
+                industrial_tags: ["Profinet", "EtherCAT", "Siemens S7", "SafeOp", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Eklentisi",
-                    desc: "KRL için popüler VS Code eklentisi. Syntax highlighting, code folding, hata denetimi. Dünya çapında yüzlerce mühendis kullanıyor."
+                    desc: "KRL için popüler eklenti: syntax, folding, hata denetimi. Yüzlerce mühendis kullanıyor."
                 },
                 langs: [
                     { name: "Rusça", level: "Anadil" },
-                    { name: "Türkçe", level: "Akıcı (C1)" },
-                    { name: "İngilizce", level: "Başlangıç (A2)" },
+                    { name: "Türkçe", level: "Akıcı" },
+                    { name: "İngilizce", level: "Başlangıç" },
                     { name: "Kırgızca", level: "Orta" }
                 ],
                 extra: [
-                    { icon: "fa-car", text: "Ehliyet (B Sınıfı)" },
+                    { icon: "fa-car", text: "Ehliyet (B)" },
                     { icon: "fa-plane", text: "Seyahate Hazır" },
                     { icon: "fa-passport", text: "Geçerli Pasaport" }
                 ],
                 certs: [
-                    { name: "ESTUN Robotik", org: "Üretici Resmi Eğitimi" },
-                    { name: "FANUC Programlama", org: "Resmi Temsilci (Türkiye)" },
-                    { name: "KUKA / ABB / Safety", org: "Şirket İçi Eğitim" }
+                    { name: "ESTUN", org: "Resmi" },
+                    { name: "FANUC", org: "Türkiye Tem." },
+                    { name: "KUKA/ABB", org: "Şirket İçi" }
                 ],
                 exp: [
                     {
                         role: "Robot Programcısı / Entegratör",
-                        comp: "Teknorob Robot ve Otomasyon",
+                        comp: "Teknorob (ABB & KUKA Ortağı)",
                         date: "2023 - Devam",
                         desc: [
-                            "Otomotiv BiW ve genel endüstri için robotik hücrelerin (KUKA, ABB, ESTUN, Fanuc) programlanması ve devreye alınması.",
-                            "RobotStudio, RoboGuide, WorkVisual ile virtual commissioning ve OLP.",
-                            "ESTUN robotlarının otomotiv standartlarında entegrasyonu (şirkette ilk uygulama).",
-                            "Punta/Gazaltı Kaynak sistemlerinin yapılandırması: ARO Servo Tabanca, Fronius ve SKS torch.",
-                            "Paletleme ve Kaynak uygulamaları için modüler kod kütüphaneleri.",
-                            "Safety sistemleri: SafeOperation, SafeMove, CIP Safety.",
-                            "Siemens S7 PLC entegrasyonu Profinet/EtherCAT üzerinden."
+                            "Otomotiv BiW için robotik hücre programlama (KUKA, ABB, ESTUN, Fanuc).",
+                            "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
+                            "Şirkette ilk ESTUN entegrasyonu.",
+                            "Kaynak sistemleri: ARO Servo, Fronius, SKS torch.",
+                            "Safety: SafeOperation, SafeMove, CIP Safety.",
+                            "Siemens S7 PLC entegrasyonu Profinet üzerinden."
                         ]
                     },
                     {
                         role: "Devreye Alma Mühendisi",
                         comp: "Ino Machinery",
-                        date: "Mar 2022 - Eyl 2022",
+                        date: "Mar - Eyl 2022",
                         desc: [
-                            "CNC ve gantry hatlarının devreye alınması.",
-                            "EPLAN kontrolü ve I/O testleri.",
-                            "Servo sürücü ve invertör ayarları."
+                            "CNC ve gantry hatları devreye alma.",
+                            "EPLAN kontrolü, I/O testi, servo ayarı."
                         ]
                     },
                     {
-                        role: "Elektronik Teknisyeni (Stajyer)",
+                        role: "Elektronik Teknisyeni",
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Otomotiv elektroniği bakım ve arıza tespiti.",
-                            "Kontrol üniteleri ve sensör sistemlerinin tamiri."
+                            "Otomotiv elektroniği arıza tespiti ve tamiri."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "Yüksek Lisans, Elektronik Müh.", uni: "Bursa Uludağ Üniversitesi", year: "2022" },
-                    { deg: "Lisans, Elektronik Mühendisliği", uni: "Kırgız Milli Üniversitesi", year: "2017" }
+                    { deg: "Y.L. Elektronik Müh.", uni: "Uludağ Üniversitesi", year: "2022" },
+                    { deg: "Lisans Elektronik Müh.", uni: "Kırgız Milli Üni.", year: "2017" }
                 ]
             },
             ru: {
                 role: "Программист промышленных роботов",
-                summary: "Инженер-автоматизатор (магистр), специализирующийся на интеграции промышленных роботов. Опыт программирования и пусконаладки KUKA, ABB, Fanuc и ESTUN для автопрома и общей промышленности. Владение Virtual Commissioning, OLP и настройкой Safety. Создатель расширения KUKA KRL для VS Code, используемого инженерами по всему миру. Готов к международным командировкам.",
+                summary: "Инженер-автоматизатор (магистр), специализация — интеграция промышленных роботов. Программирование KUKA, ABB, Fanuc и ESTUN. Создатель расширения KUKA KRL для VS Code. Готов к международным командировкам.",
                 titles: {
-                    contacts: "Контакты", robots: "Роботы", sim: "Симуляция",
-                    apps: "Применения", eoat: "EOAT / Оснастка",
-                    industrial: "Протоколы & Safety", dev: "Разработка", exp: "Опыт",
+                    contacts: "Контакты", robots: "Навыки роботов", sim: "Симуляция",
+                    apps: "Применения", eoat: "EOAT",
+                    industrial: "Протоколы & Safety", exp: "Опыт",
                     edu: "Образование", langs: "Языки", extra: "Доп. инфо", certs: "Сертификаты"
                 },
-                company_info: "Работаю в компании — <strong>партнёре ABB & KUKA</strong>. <strong>400+ завершённых проектов</strong> в <strong>12 странах</strong>.",
+                open_badge: "Открыт к работе",
+                qr_label: "LinkedIn QR",
+                stats: [
+                    { num: "4", label: "Бренда роботов" },
+                    { num: "10+", label: "Ячеек" },
+                    { num: "400+", label: "Проектов компании" },
+                    { num: "12", label: "Стран" }
+                ],
                 contact: { loc: "Бурса, Турция", phone: "+90 505 047 6850" },
-                badges: [
-                    { icon: "K", text: "KUKA KRC4/5", bg: "#FF5E00" },
-                    { icon: "A", text: "ABB IRC5", bg: "#FF9E00" },
-                    { icon: "F", text: "FANUC R-30iB", bg: "#FFC107" },
-                    { icon: "E", text: "ESTUN ER", bg: "#D32F2F" }
+                skills: [
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
                 ],
                 software: [
-                    { name: "WorkVisual", bg: "#FF5E00" },
-                    { name: "RobotStudio", bg: "#FF9E00" },
-                    { name: "RoboGuide", bg: "#FFC107" },
-                    { name: "ESTUN Editor", bg: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
+                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
                 ],
-                applications: ["Контактная сварка", "Дуговая сварка", "Паллетирование", "Handling", "Нанесение клея"],
-                eoat: ["ARO Servo Guns", "Fronius Torches", "SKS Torches", "Custom Grippers"],
-                industrial_tags: ["Profinet", "EtherCAT", "Ethernet/IP", "Siemens S7 (Интеграция)", "SafeOperation", "SafeMove", "CIP Safety"],
+                applications: ["Контактная сварка", "Дуговая", "Паллетирование", "Handling", "Клей"],
+                eoat: ["ARO Servo", "Fronius", "SKS", "Custom Grip"],
+                industrial_tags: ["Profinet", "EtherCAT", "Siemens S7", "SafeOp", "SafeMove", "CIP Safety"],
                 dev_proj: {
                     title: "KUKA KRL VS Code Extension",
-                    desc: "Разработал расширение VS Code для KRL. Подсветка, фолдинг, диагностика. Используется сотнями инженеров по всему миру."
+                    desc: "Популярное расширение для KRL: подсветка, фолдинг, диагностика. Сотни инженеров."
                 },
                 langs: [
                     { name: "Русский", level: "Родной" },
-                    { name: "Турецкий", level: "Свободно (C1)" },
-                    { name: "Английский", level: "Базовый (A2)" },
+                    { name: "Турецкий", level: "Свободно" },
+                    { name: "Английский", level: "Базовый" },
                     { name: "Киргизский", level: "Средний" }
                 ],
                 extra: [
-                    { icon: "fa-car", text: "Водительские права (кат. B)" },
+                    { icon: "fa-car", text: "Права (B)" },
                     { icon: "fa-plane", text: "Готов к командировкам" },
-                    { icon: "fa-passport", text: "Действующий загранпаспорт" }
+                    { icon: "fa-passport", text: "Загранпаспорт" }
                 ],
                 certs: [
-                    { name: "ESTUN Robotics", org: "Официальное (Производитель)" },
-                    { name: "FANUC Programming", org: "Офиц. представитель (Турция)" },
-                    { name: "KUKA / ABB / Safety", org: "Внутреннее обучение" }
+                    { name: "ESTUN", org: "Офиц." },
+                    { name: "FANUC", org: "Турция" },
+                    { name: "KUKA/ABB", org: "Внутр." }
                 ],
                 exp: [
                     {
                         role: "Программист роботов / Интегратор",
-                        comp: "Teknorob Robot ve Otomasyon",
+                        comp: "Teknorob (Партнёр ABB & KUKA)",
                         date: "2023 - Наст. время",
                         desc: [
-                            "Программирование и пусконаладка робототехнических ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома BiW и общей промышленности.",
-                            "Virtual commissioning и OLP в RobotStudio, RoboGuide, WorkVisual.",
-                            "Первое внедрение ESTUN по стандартам автопрома в компании.",
-                            "Настройка сварочных систем: ARO Servo Guns, горелки Fronius и SKS.",
-                            "Модульные библиотеки для Паллетирования и Сварки.",
-                            "Настройка Safety: SafeOperation, SafeMove, CIP Safety.",
-                            "Интеграция с Siemens S7 через Profinet/EtherCAT."
+                            "Программирование ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома BiW.",
+                            "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
+                            "Первое внедрение ESTUN по стандартам автопрома.",
+                            "Сварочные системы: ARO Servo, Fronius, SKS.",
+                            "Safety: SafeOperation, SafeMove, CIP Safety.",
+                            "Интеграция Siemens S7 через Profinet."
                         ]
                     },
                     {
-                        role: "Инженер по вводу в эксплуатацию",
+                        role: "Инженер пусконаладки",
                         comp: "Ino Machinery",
-                        date: "Март 2022 - Сен 2022",
+                        date: "Март - Сен 2022",
                         desc: [
                             "Пусконаладка ЧПУ и портальных систем.",
-                            "Проверка EPLAN и I/O тестирование.",
-                            "Настройка сервоприводов и частотников."
+                            "Проверка EPLAN, I/O тест, настройка серво."
                         ]
                     },
                     {
-                        role: "Техник-электроник (Стажер)",
+                        role: "Техник-электроник",
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Обслуживание и диагностика автоэлектроники.",
-                            "Ремонт блоков управления и сенсорных систем."
+                            "Диагностика и ремонт автоэлектроники."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "Магистр электронной инженерии", uni: "Университет Улудаг", year: "2022" },
-                    { deg: "Бакалавр электронной инженерии", uni: "Кыргызский нац. университет", year: "2017" }
+                    { deg: "Магистр электроники", uni: "Университет Улудаг", year: "2022" },
+                    { deg: "Бакалавр электроники", uni: "Кыргызский нац. унив.", year: "2017" }
                 ]
             }
         };
+
+        // QR Code (LinkedIn URL encoded as QR via API)
+        const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/silvestr-liskin";
 
         function setLang(l) {
             const d = content[l];
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`button[onclick="setLang('${l}')"]`).classList.add('active');
 
-            const makeBadge = (icon, text, bg) => `
-                <div class="tech-badge" style="border-left: 2px solid ${bg}">
-                    <div class="tech-badge-icon" style="background:${bg}; color:#111;">${icon}</div>
-                    <div class="tech-badge-text">${text}</div>
+            const makeSkillBar = (name, pct, color) => `
+                <div class="skill-bar">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">${name}</span>
+                        <span class="skill-bar-pct">${pct}%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width:${pct}%; background:${color}"></div>
+                    </div>
                 </div>
             `;
 
             const html = `
                 <div class="sidebar">
-                    <div class="photo-frame">
-                        <img src="profile_photo.png" alt="Silvestr Liskin">
+                    <div class="photo-container">
+                        <div class="photo-frame">
+                            <img src="profile_photo.png" alt="Silvestr Liskin">
+                        </div>
+                        <div class="open-badge">🟢 ${d.open_badge}</div>
                     </div>
 
                     <div class="sidebar-section">
@@ -997,18 +1062,18 @@
                         <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:silvlis@outlook.com">silvlis@outlook.com</a></div>
                         <div class="contact-item"><i class="fas fa-phone"></i> ${d.contact.phone}</div>
                         <div class="contact-item"><i class="fas fa-map-marker-alt"></i> ${d.contact.loc}</div>
-                        <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/silvestr-liskin">linkedin.com/in/silvestr-liskin</a></div>
-                        <div class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/SilvestrLiskin">github.com/SilvestrLiskin</a></div>
+                        <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/silvestr-liskin">silvestr-liskin</a></div>
+                        <div class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/SilvestrLiskin">SilvestrLiskin</a></div>
                     </div>
 
                     <div class="sidebar-section">
                         <h3><i class="fas fa-robot"></i> ${d.titles.robots}</h3>
-                        ${d.badges.map(b => makeBadge(b.icon, b.text, b.bg)).join('')}
+                        ${d.skills.map(s => makeSkillBar(s.name, s.pct, s.color)).join('')}
                     </div>
 
                     <div class="sidebar-section">
                         <h3><i class="fas fa-desktop"></i> ${d.titles.sim}</h3>
-                        ${d.software.map(s => makeBadge('<i class="fas fa-tv" style="font-size:7px"></i>', s.name, s.bg)).join('')}
+                        ${d.software.map(s => makeSkillBar(s.name, s.pct, s.color)).join('')}
                     </div>
 
                     <div class="sidebar-section">
@@ -1030,6 +1095,11 @@
                         <h3><i class="fas fa-plus-circle"></i> ${d.titles.extra}</h3>
                         ${d.extra.map(e => `<div class="extra-item"><i class="fas ${e.icon}"></i> ${e.text}</div>`).join('')}
                     </div>
+
+                    <div class="qr-section">
+                        <img src="${qrUrl}" alt="QR Code">
+                        <div class="qr-label">${d.qr_label}</div>
+                    </div>
                 </div>
 
                 <div class="main">
@@ -1041,20 +1111,25 @@
                         <div class="summary">${d.summary}</div>
                     </div>
 
-                    <div class="company-badge">
-                        <i class="fas fa-building" style="color:var(--orange); margin-right:5px"></i> ${d.company_info}
+                    <div class="stats-row">
+                        ${d.stats.map(s => `
+                            <div class="stat-box">
+                                <div class="stat-number">${s.num}</div>
+                                <div class="stat-label">${s.label}</div>
+                            </div>
+                        `).join('')}
                     </div>
 
                     <div class="dev-card">
-                         <div style="font-family:'Chakra Petch'; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:3px; font-size:0.8rem">
+                         <div style="font-family:'Chakra Petch'; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:2px; font-size:0.75rem">
                             <i class="fas fa-code-branch" style="color:white; margin-right:4px"></i> ${d.dev_proj.title}
                          </div>
-                         <div style="font-size:0.73rem; color:#ddd; line-height:1.2">${d.dev_proj.desc}</div>
+                         <div style="font-size:0.68rem; color:#ddd; line-height:1.2">${d.dev_proj.desc}</div>
                     </div>
 
                     <div class="section-title"><i class="fas fa-certificate"></i> ${d.titles.certs}</div>
-                    <div class="sim-box">
-                        ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> <strong>${c.name}</strong> <span style="color:#888; font-size:0.65rem">(${c.org})</span></div>`).join('')}
+                    <div class="sim-box" style="display:flex; gap:10px; flex-wrap:wrap">
+                        ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> <strong>${c.name}</strong> <span style="color:#777">(${c.org})</span></div>`).join('')}
                     </div>
 
                     <div class="section-title"><i class="fas fa-cogs"></i> ${d.titles.industrial}</div>
@@ -1076,17 +1151,14 @@
                         </div>
                     `).join('')}
 
+                    <div class="section-title"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
                     <div class="grid-2">
-                        <div>
-                            <div class="section-title"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
-                            ${d.edu.map(u => `
-                                <div class="edu-item">
-                                    <div class="edu-deg">${u.deg}</div>
-                                    <div class="edu-uni">${u.uni} | ${u.year}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div></div>
+                        ${d.edu.map(u => `
+                            <div class="edu-item">
+                                <div class="edu-deg">${u.deg}</div>
+                                <div class="edu-uni">${u.uni} | ${u.year}</div>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
             `;
