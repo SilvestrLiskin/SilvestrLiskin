@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silvestr Liskin - CV</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5E00;
+            /* KUKA Orange */
+            --dark: #1e1e24;
+            --gray: #4b5563;
+            --light-bg: #f3f4f6;
+            --white: #ffffff;
+            --accent-blue: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e5e5e5;
+            color: var(--dark);
+            font-size: 13.5px;
+            /* Slightly smaller to fit more info */
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* Language Switcher (Hidden in Print) */
+        .lang-switcher {
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.2s;
+            color: var(--gray);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--light-bg);
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            /* A4 */
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 30% 70%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Sidebar (Left Column) */
+        .sidebar {
+            background: var(--dark);
+            color: var(--white);
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .profile-img-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            width: 14px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .sidebar-section h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Main Content (Right Column) */
+        .main-content {
+            padding: 35px 40px;
+            background: var(--white);
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 20px;
+        }
+
+        .name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .name span {
+            color: var(--primary);
+        }
+
+        .role {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .summary {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-align: justify;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            color: var(--dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            border-left: 2px solid #e5e7eb;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .company {
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .date {
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .description ul {
+            list-style-type: none;
+            margin-top: 5px;
+        }
+
+        .description li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 3px;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        .description li::before {
+            content: '›';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1rem;
+            top: 0;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                display: block;
+            }
+
+            .lang-switcher {
+                display: none;
+            }
+
+            .page {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                margin: 0;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">English</button>
+        <button class="lang-btn" onclick="setLang('tr')">Türkçe</button>
+        <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+    </div>
+
+    <div class="page" id="cv-content">
+        <!-- Content will be injected by JS -->
+    </div>
+
+    <script>
+        const data = {
+            en: {
+                role: "Industrial Robot Programmer & MSc Engineer",
+                summary: "Master of Science in Electronic Engineering with extensive experience in industrial automation and robotic system integration. Expert in programming KUKA (KRL) and ABB (RAPID) robots, offline simulation (RobotStudio/RoboGuide), and PLC commissioning. Proven track record of developing full-scale automation lines (Palletizing, Welding) from scratch.",
+                sections: {
+                    contact: "Contact",
+                    skills: "Skills",
+                    languages: "Languages",
+                    experience: "Experience",
+                    education: "Education"
+                },
+                contact: {
+                    location: "Bursa / Turkey",
+                    phone: "+90 505 047 6850"
+                },
+                skills: {
+                    robotics: ["KUKA KRL", "ABB RAPID", "Fanuc TP/Karel", "RobotStudio", "RoboGuide"],
+                    engineering: ["PLC (Siemens/Mitsubishi)", "EPLAN P8", "Altium Designer", "Electrical Design"],
+                    dev: ["VS Code Extensions", "TypeScript/JS", "Git/Docker"]
+                },
+                languages_list: [
+                    { name: "Russian", level: "Native" },
+                    { name: "Turkish", level: "Advanced" },
+                    { name: "English", level: "Technical" },
+                    { name: "Kyrgyz", level: "Intermediate" }
+                ],
+                experience: [
+                    {
+                        title: "Industrial Robot Programmer / Integrator",
+                        company: "Teknorob Robot ve Otomasyon",
+                        date: "2023 - Present",
+                        loc: "Bursa, Turkey",
+                        desc: [
+                            "Programmed and commissioned Automatic Palletizing Lines with ABB robots (RAPID) from scratch.",
+                            "Developed modular multi-tool logic (gripper/gun) and dynamic stacking algorithms.",
+                            "Integrated robotic systems with PLCs and peripheral devices (sensors, actuators).",
+                            "Conducted offline programming, simulation, and virtual cell creation using RobotStudio and RoboGuide.",
+                            "Implemented robotic welding applications and safety concepts.",
+                            "Analyzed technical drawings (electrical, pneumatic) for system optimization."
+                        ]
+                    },
+                    {
+                        title: "Commissioning Engineer",
+                        company: "Ino Machinery (INO METAL A.Ş.)",
+                        date: "Mar 2022 - Sep 2022",
+                        loc: "Bursa, Turkey",
+                        desc: [
+                            "Designed electrical projects and schematics using EPLAN.",
+                            "Commissioned CNC machines, including control system setup and testing.",
+                            "Managed assembly, cabling, and testing of electrical panels.",
+                            "Diagnosed and resolved electrical faults in automation systems.",
+                            "Provided technical documentation support for installation."
+                        ]
+                    },
+                    {
+                        title: "Electronic Technician Intern",
+                        company: "Jaguar Land Rover",
+                        date: "2015 - 2016",
+                        loc: "",
+                        desc: [
+                            "Maintenance and repair of automotive electronic systems.",
+                            "Diagnostics of vehicle electronics."
+                        ]
+                    }
+                ],
+                education: [
+                    {
+                        degree: "M.Sc. Electronic Engineering",
+                        school: "Bursa Uludağ University",
+                        date: "2018 - 2022"
+                    },
+                    {
+                        degree: "B.Sc. Electronic Engineering",
+                        school: "Kyrgyz National University",
+                        date: "2013 - 2017"
+                    }
+                ]
+            },
+            tr: {
+                role: "Endüstriyel Robot Programcısı & Yüksek Mühendis",
+                summary: "Elektronik Mühendisliği alanında Yüksek Lisans derecesine sahip, endüstriyel otomasyon ve robotik sistem entegrasyonu konusunda deneyimli. ABB (RAPID), KUKA (KRL) ve Fanuc robotlarının programlanması, RobotStudio/RoboGuide ile offline simülasyon ve PLC entegrasyonu konularında uzman. Paletleme ve Kaynak hatlarını sıfırdan devreye alma tecrübesi.",
+                sections: {
+                    contact: "İletişim",
+                    skills: "Yetenekler",
+                    languages: "Yabancı Dil",
+                    experience: "İş Deneyimleri",
+                    education: "Eğitim Bilgileri"
+                },
+                contact: {
+                    location: "Bursa / Nilüfer",
+                    phone: "+90 505 047 6850"
+                },
+                skills: {
+                    robotics: ["KUKA KRL", "ABB RAPID", "Fanuc TP/Karel", "RobotStudio", "RoboGuide"],
+                    engineering: ["PLC (Siemens/Mitsubishi)", "EPLAN P8", "Altium Designer", "Elektrik Projelendirme"],
+                    dev: ["VS Code Extensions", "TypeScript/JS", "Git/Docker"]
+                },
+                languages_list: [
+                    { name: "Rusça", level: "Anadil" },
+                    { name: "Türkçe", level: "İyi (C1)" },
+                    { name: "İngilizce", level: "Teknik" },
+                    { name: "Kırgızca", level: "Orta" }
+                ],
+                experience: [
+                    {
+                        title: "Endüstriyel Robot Programcısı / Entegratörü",
+                        company: "Teknorob Robot ve Otomasyon",
+                        date: "2023 - Devam",
+                        loc: "Bursa",
+                        desc: [
+                            "Otomatik paletleme hattı için ABB robotunu (RAPID) sıfırdan programladı ve devreye aldı.",
+                            "Modüler program yapısı, çoklu takım (gripper) kullanımı ve dinamik istifleme mantığı geliştirdi.",
+                            "Fanuc robotları (TP/Karel) ile programlama ve entegrasyon gerçekleştirdi.",
+                            "Robotik sistemlerin PLC ve çevre birimlerle (sensör, aktüatör) sinyal alışverişini yapılandırdı.",
+                            "RobotStudio ve RoboGuide kullanarak offline programlama ve sanal hücre oluşturma çalışmaları yaptı.",
+                            "Robotik kaynak uygulamaları ve güvenlik konseptlerinin uygulanmasında yer aldı.",
+                            "Elektrik ve pnömatik teknik resimleri okuyarak arıza tespiti yaptı."
+                        ]
+                    },
+                    {
+                        title: "Devreye Alma Mühendisi",
+                        company: "Ino Machinery (İNO METAL A.Ş.)",
+                        date: "Mart 2022 - Eylül 2022",
+                        loc: "Bursa",
+                        desc: [
+                            "EPLAN kullanarak endüstriyel otomasyon sistemleri için elektrik projelerini hazırladı.",
+                            "CNC makinelerinin kurulumu, kontrol sistemlerinin ayarlanması ve test süreçlerini yürüttü.",
+                            "Otomasyon panolarının montaj, kablolama ve test işlemlerini gerçekleştirdi.",
+                            "Sistemlerdeki elektriksel sorunları teşhis etti ve giderdi.",
+                            "Teknik dokümantasyon desteği sağladı."
+                        ]
+                    },
+                    {
+                        title: "Elektronik Teknisyeni (Stajyer)",
+                        company: "Jaguar Land Rover",
+                        date: "2015 - 2016",
+                        loc: "",
+                        desc: [
+                            "Otomotiv elektronik sistemlerinin bakım ve onarımı.",
+                            "Araç elektroniği arıza tespiti."
+                        ]
+                    }
+                ],
+                education: [
+                    {
+                        degree: "Yüksek Lisans, Elektronik Müh.",
+                        school: "Bursa Uludağ Üniversitesi",
+                        date: "2018 - 2022"
+                    },
+                    {
+                        degree: "Lisans, Elektronik Mühendisliği",
+                        school: "Kırgız Milli Üniversitesi",
+                        date: "2013 - 2017"
+                    }
+                ]
+            },
+            ru: {
+                role: "Программист промышленных роботов & Магистр инженерии",
+                summary: "Магистр электронной инженерии с обширным опытом в промышленной автоматизации и интеграции робототехнических систем. Эксперт в программировании роботов KUKA (KRL) и ABB (RAPID), офлайн-симуляции (RobotStudio/RoboGuide) и пусконаладке PLC. Успешный опыт разработки линий паллетирования и сварки с нуля.",
+                sections: {
+                    contact: "Контакты",
+                    skills: "Навыки",
+                    languages: "Языки",
+                    experience: "Опыт работы",
+                    education: "Образование"
+                },
+                contact: {
+                    location: "Бурса, Турция",
+                    phone: "+90 505 047 6850"
+                },
+                skills: {
+                    robotics: ["KUKA KRL", "ABB RAPID", "Fanuc TP/Karel", "RobotStudio", "RoboGuide"],
+                    engineering: ["PLC (Siemens/Mitsubishi)", "EPLAN P8", "Altium Designer", "Электропроектирование"],
+                    dev: ["VS Code Extensions", "TypeScript/JS", "Git/Docker"]
+                },
+                languages_list: [
+                    { name: "Русский", level: "Родной" },
+                    { name: "Турецкий", level: "Продвинутый" },
+                    { name: "Английский", level: "Технический" },
+                    { name: "Киргизский", level: "Средний" }
+                ],
+                experience: [
+                    {
+                        title: "Программист / Интегратор промышленных роботов",
+                        company: "Teknorob Robot ve Otomasyon",
+                        date: "2023 - Наст. время",
+                        loc: "Бурса, Турция",
+                        desc: [
+                            "Программирование и пусконаладка линий автоматического паллетирования на базе роботов ABB (RAPID) с нуля.",
+                            "Разработка модульной логики, работа с несколькими захватами и алгоритмами динамической укладки.",
+                            "Интеграция роботов Fanuc (TP/Karel) с PLC и периферийным оборудованием (сенсоры, актуаторы).",
+                            "Офлайн-программирование и создание виртуальных ячеек в RobotStudio и RoboGuide.",
+                            "Реализация роботизированной сварки и систем безопасности.",
+                            "Работа с техническими чертежами (электрика, пневматика) и CAD-данными."
+                        ]
+                    },
+                    {
+                        title: "Инженер по вводу в эксплуатацию",
+                        company: "Ino Machinery (INO METAL A.Ş.)",
+                        date: "Март 2022 - Сен 2022",
+                        loc: "Бурса, Турция",
+                        desc: [
+                            "Разработка электрических схем и проектов в EPLAN.",
+                            "Пусконаладка станков с ЧПУ, настройка систем управления и тестирование.",
+                            "Сборка, электромонтаж и тестирование шкафов автоматики.",
+                            "Диагностика и устранение электрических неисправностей.",
+                            "Подготовка технической документации."
+                        ]
+                    },
+                    {
+                        title: "Техник-электроник (Стажер)",
+                        company: "Jaguar Land Rover",
+                        date: "2015 - 2016",
+                        loc: "",
+                        desc: [
+                            "Обслуживание и ремонт автомобильных электронных систем.",
+                            "Диагностика электрооборудования."
+                        ]
+                    }
+                ],
+                education: [
+                    {
+                        degree: "Магистр электронной инженерии",
+                        school: "Университет Улудаг (Bursa Uludağ)",
+                        date: "2018 - 2022"
+                    },
+                    {
+                        degree: "Бакалавр электронной инженерии",
+                        school: "Кыргызский национальный университет",
+                        date: "2013 - 2017"
+                    }
+                ]
+            }
+        };
+
+        function setLang(lang) {
+            const content = data[lang];
+            const root = document.getElementById('cv-content');
+
+            // Update Active Config
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`button[onclick="setLang('${lang}')"]`).classList.add('active');
+
+            // Render
+            root.innerHTML = `
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="profile-img-container">
+                       <img src="https://media.licdn.com/dms/image/v2/D4D03AQHiJq8-d2h82g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715077209930?e=1742428800&v=beta&t=example" alt="Profile">
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="sidebar-section">
+                            <h3>${content.sections.contact}</h3>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>${content.contact.phone}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:silvlis@outlook.com">silvlis@outlook.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${content.contact.location}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/SilvestrLiskin">github.com/SilvestrLiskin</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://linkedin.com/in/silvestr-liskin-ab712920b">LinkedIn Profile</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>${content.sections.skills}</h3>
+                        <div class="skill-list" style="color:white;">
+                            <div style="margin-bottom:15px">
+                                <div style="font-size:0.8rem; color:#bbb; margin-bottom:5px">ROBOTICS</div>
+                                <div class="tag-cloud">
+                                    ${content.skills.robotics.map(s => `<span class="tag">${s}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div style="margin-bottom:15px">
+                                <div style="font-size:0.8rem; color:#bbb; margin-bottom:5px">ENGINEERING</div>
+                                <div class="tag-cloud">
+                                    ${content.skills.engineering.map(s => `<span class="tag">${s}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <div style="font-size:0.8rem; color:#bbb; margin-bottom:5px">DEV</div>
+                                <div class="tag-cloud">
+                                    ${content.skills.dev.map(s => `<span class="tag">${s}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>${content.sections.languages}</h3>
+                        <div class="skill-list">
+                            ${content.languages_list.map(l => `
+                                <li>
+                                    <span>${l.name}</span>
+                                    <span style="opacity:0.7">${l.level}</span>
+                                </li>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="header">
+                        <h1 class="name">Silvestr <span>Liskin</span></h1>
+                        <p class="role">${content.role}</p>
+                        <p class="summary">
+                            ${content.summary}
+                        </p>
+                    </div>
+
+                    <div class="section">
+                        <h2 class="section-title"><i class="fas fa-briefcase" style="margin-right: 10px;"></i> ${content.sections.experience}</h2>
+                        
+                        ${content.experience.map(job => `
+                            <div class="timeline-item">
+                                <div class="job-header">
+                                    <div class="job-title">${job.title}</div>
+                                    <div class="date">${job.date} | ${job.loc}</div>
+                                </div>
+                                <div class="company">${job.company}</div>
+                                <div class="description">
+                                    <ul>
+                                        ${job.desc.map(d => `<li>${d}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="section">
+                        <h2 class="section-title"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i> ${content.sections.education}</h2>
+                        ${content.education.map(edu => `
+                            <div class="timeline-item" style="border: none; padding-left: 0;">
+                                <div class="job-title">${edu.degree}</div>
+                                <div class="company">${edu.school}</div>
+                                <div class="date">${edu.date}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize with English
+        setLang('en');
+    </script>
+</body>
+
+</html>
