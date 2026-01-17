@@ -15,12 +15,27 @@
             --yellow: #FFC107;
             --red: #D32F2F;
             --green: #4CAF50;
+            --blue: #2196F3;
             --dark: #121212;
             --panel: #1E1E1E;
             --text-main: #E0E0E0;
             --text-muted: #A0A0A0;
             --border: #333;
             --grid-color: rgba(255, 255, 255, 0.03);
+            --sidebar-bg: rgba(25, 25, 25, 0.98);
+            --main-bg: var(--dark);
+        }
+
+        /* Light Theme */
+        .light-mode {
+            --dark: #ffffff;
+            --panel: #f5f5f5;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --grid-color: rgba(0, 0, 0, 0.03);
+            --sidebar-bg: #f0f0f0;
+            --main-bg: #ffffff;
         }
 
         * {
@@ -40,6 +55,12 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            transition: background 0.3s;
+        }
+
+        .light-mode body,
+        body.light-mode-body {
+            background: #e0e0e0;
         }
 
         .controls {
@@ -47,12 +68,19 @@
             display: flex;
             gap: 8px;
             background: #222;
-            padding: 8px;
+            padding: 8px 12px;
             border: 1px solid #555;
             border-radius: 4px;
+            align-items: center;
         }
 
-        .lang-btn {
+        .light-mode .controls {
+            background: #fff;
+            border-color: #ccc;
+        }
+
+        .lang-btn,
+        .theme-btn {
             background: #333;
             color: #ddd;
             border: 1px solid #444;
@@ -63,6 +91,14 @@
             font-weight: 600;
             font-size: 11px;
             letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .light-mode .lang-btn,
+        .light-mode .theme-btn {
+            background: #f0f0f0;
+            color: #333;
+            border-color: #ccc;
         }
 
         .lang-btn.active {
@@ -71,10 +107,20 @@
             border-color: var(--orange);
         }
 
+        .theme-btn {
+            margin-left: 10px;
+            border-radius: 20px;
+            padding: 5px 12px;
+        }
+
+        .theme-btn i {
+            margin-right: 4px;
+        }
+
         .page {
             width: 210mm;
             min-height: 297mm;
-            background: var(--dark);
+            background: var(--main-bg);
             display: grid;
             grid-template-columns: 30% 70%;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
@@ -83,6 +129,11 @@
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 15px 15px;
+            transition: background 0.3s;
+        }
+
+        .light-mode .page {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
         }
 
         .page::before,
@@ -121,14 +172,54 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* Fade-in Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .animate-in-left {
+            animation: fadeInLeft 0.5s ease forwards;
+            opacity: 0;
+        }
+
         /* SIDEBAR */
         .sidebar {
-            background: rgba(25, 25, 25, 0.98);
+            background: var(--sidebar-bg);
             border-right: 1px solid var(--border);
             padding: 20px 15px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+        }
+
+        .light-mode .sidebar {
+            background: #f5f5f5;
+            border-right-color: #ddd;
         }
 
         .photo-container {
@@ -144,6 +235,7 @@
             background: #000;
             position: relative;
             clip-path: polygon(8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%, 0 8%);
+            overflow: hidden;
         }
 
         .photo-frame img {
@@ -202,7 +294,7 @@
         .sidebar-section h3 {
             color: var(--orange);
             font-size: 0.75rem;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 3px;
             margin-bottom: 6px;
             letter-spacing: 1px;
@@ -235,9 +327,63 @@
             text-decoration: none;
         }
 
+        /* Mini Map */
+        .map-container {
+            position: relative;
+            height: 45px;
+            background: linear-gradient(135deg, #1a2a1a 0%, #0a1a0a 100%);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .light-mode .map-container {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .map-turkey {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 35%;
+            left: 25%;
+            width: 8px;
+            height: 8px;
+            background: var(--orange);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(255, 94, 0, 0.3);
+            animation: ping 1.5s infinite;
+        }
+
+        @keyframes ping {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 94, 0, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 0 0 10px rgba(255, 94, 0, 0);
+            }
+        }
+
+        .map-label {
+            position: absolute;
+            top: 25%;
+            left: 35%;
+            font-size: 0.55rem;
+            color: var(--orange);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
         /* Progress Bars for Skills */
         .skill-bar {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .skill-bar-header {
@@ -248,21 +394,36 @@
         }
 
         .skill-bar-name {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 600;
-            color: #ddd;
+            color: var(--text-main);
             font-family: 'Chakra Petch', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .skill-bar-name .robot-icon {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7px;
+            font-weight: bold;
+            color: #fff;
         }
 
         .skill-bar-pct {
-            font-size: 0.6rem;
-            color: #888;
+            font-size: 0.58rem;
+            color: var(--text-muted);
             font-family: 'JetBrains Mono', monospace;
         }
 
         .skill-bar-track {
-            height: 6px;
-            background: #333;
+            height: 5px;
+            background: var(--border);
             border-radius: 3px;
             overflow: hidden;
         }
@@ -270,7 +431,7 @@
         .skill-bar-fill {
             height: 100%;
             border-radius: 3px;
-            transition: width 0.5s ease;
+            transition: width 0.8s ease;
         }
 
         .lang-bar {
@@ -278,17 +439,17 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 3px;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
         }
 
         .lang-bar-name {
-            color: #ddd;
+            color: var(--text-main);
         }
 
         .lang-bar-level {
             color: var(--orange);
             font-weight: 600;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
         }
 
         .extra-item {
@@ -296,8 +457,8 @@
             align-items: center;
             gap: 5px;
             margin-bottom: 3px;
-            font-size: 0.68rem;
-            color: #ccc;
+            font-size: 0.65rem;
+            color: var(--text-main);
         }
 
         .extra-item i {
@@ -309,24 +470,24 @@
 
         .app-tag {
             display: inline-block;
-            background: #333;
+            background: var(--border);
             padding: 2px 4px;
             margin: 1px;
             border-radius: 2px;
-            font-size: 0.6rem;
-            color: #fff;
+            font-size: 0.58rem;
+            color: var(--text-main);
             border-left: 2px solid var(--orange);
         }
 
         .eoat-tag {
             display: inline-block;
-            background: #2d2d2d;
+            background: var(--panel);
             padding: 2px 4px;
             margin: 1px;
             border-radius: 2px;
-            font-size: 0.58rem;
-            color: #fff;
-            border: 1px solid #444;
+            font-size: 0.55rem;
+            color: var(--text-main);
+            border: 1px solid var(--border);
         }
 
         /* QR Code */
@@ -334,20 +495,20 @@
             text-align: center;
             margin-top: 5px;
             padding-top: 8px;
-            border-top: 1px dashed #333;
+            border-top: 1px dashed var(--border);
         }
 
         .qr-section img {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: white;
             padding: 3px;
             border-radius: 4px;
         }
 
         .qr-label {
-            font-size: 0.55rem;
-            color: #888;
+            font-size: 0.5rem;
+            color: var(--text-muted);
             margin-top: 3px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -367,9 +528,13 @@
         .name-block h1 {
             font-size: 2rem;
             line-height: 0.9;
-            color: white;
+            color: var(--text-main);
             letter-spacing: -1px;
             margin-bottom: 3px;
+        }
+
+        .light-mode .name-block h1 {
+            color: #111;
         }
 
         .name-block h1 span {
@@ -385,11 +550,11 @@
 
         .summary {
             margin-top: 6px;
-            color: #bbb;
+            color: var(--text-muted);
             line-height: 1.25;
             text-align: justify;
-            font-size: 0.75rem;
-            border-top: 1px solid #333;
+            font-size: 0.72rem;
+            border-top: 1px solid var(--border);
             padding-top: 6px;
         }
 
@@ -398,37 +563,43 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #1a1a1a, #252525);
-            border: 1px solid #333;
-            padding: 10px 5px;
+            background: linear-gradient(135deg, var(--panel), var(--dark));
+            border: 1px solid var(--border);
+            padding: 8px 5px;
             text-align: center;
             border-radius: 4px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 94, 0, 0.2);
         }
 
         .stat-number {
             font-family: 'Chakra Petch', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--orange);
             line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.6rem;
-            color: #888;
+            font-size: 0.55rem;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         .section-title {
             color: var(--orange);
-            font-size: 0.9rem;
-            border-bottom: 1px solid #333;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 6px;
             padding-bottom: 3px;
             display: flex;
@@ -437,7 +608,7 @@
         }
 
         .section-title i {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             opacity: 0.8;
         }
 
@@ -454,30 +625,58 @@
             position: absolute;
             top: -6px;
             right: 6px;
-            background: var(--dark);
+            background: var(--main-bg);
             padding: 0 3px;
-            font-size: 0.5rem;
+            font-size: 0.48rem;
             color: var(--orange);
             border: 1px solid var(--orange);
             font-family: 'Chakra Petch';
             letter-spacing: 1px;
         }
 
+        /* Enhanced Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--orange), var(--yellow), var(--border));
+        }
+
         .job-item {
             margin-bottom: 8px;
             position: relative;
-            padding-left: 10px;
-            border-left: 1px dashed #444;
+            padding-left: 15px;
         }
 
         .job-item::before {
             content: '';
             position: absolute;
-            left: -3px;
-            top: 0;
-            width: 5px;
-            height: 5px;
-            background: var(--orange);
+            left: -19px;
+            top: 3px;
+            width: 10px;
+            height: 10px;
+            background: var(--main-bg);
+            border: 2px solid var(--orange);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .job-item::after {
+            content: '';
+            position: absolute;
+            left: -14px;
+            top: 8px;
+            width: 10px;
+            height: 1px;
+            background: var(--border);
         }
 
         .job-head {
@@ -488,21 +687,28 @@
         }
 
         .job-role {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            color: white;
+            color: var(--text-main);
+        }
+
+        .light-mode .job-role {
+            color: #111;
         }
 
         .job-comp {
             color: var(--yellow);
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
         .job-date {
             font-family: 'JetBrains Mono';
-            font-size: 0.65rem;
-            color: #777;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            background: var(--border);
+            padding: 1px 4px;
+            border-radius: 2px;
         }
 
         .job-desc ul {
@@ -514,19 +720,17 @@
             position: relative;
             padding-left: 8px;
             margin-bottom: 1px;
-            color: #ccc;
-            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.68rem;
             line-height: 1.2;
         }
 
         .job-desc li::before {
-            content: '>';
+            content: '▸';
             position: absolute;
             left: 0;
             color: var(--orange);
-            font-family: 'JetBrains Mono';
-            font-weight: bold;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
         }
 
         .grid-2 {
@@ -536,21 +740,21 @@
         }
 
         .sim-box {
-            background: #1A1A1A;
-            border: 1px solid #333;
+            background: var(--panel);
+            border: 1px solid var(--border);
             padding: 5px;
             margin-bottom: 8px;
         }
 
         .mini-tag {
             display: inline-block;
-            background: #333;
+            background: var(--border);
             padding: 2px 3px;
             margin: 1px;
             border-radius: 2px;
-            font-size: 0.58rem;
-            color: #fff;
-            border: 1px solid #444;
+            font-size: 0.55rem;
+            color: var(--text-main);
+            border: 1px solid var(--border);
         }
 
         .edu-item {
@@ -559,14 +763,18 @@
 
         .edu-deg {
             font-weight: 700;
-            font-size: 0.75rem;
-            color: #eee;
+            font-size: 0.72rem;
+            color: var(--text-main);
+        }
+
+        .light-mode .edu-deg {
+            color: #111;
         }
 
         .edu-uni {
             font-family: 'JetBrains Mono';
-            font-size: 0.65rem;
-            color: #aaa;
+            font-size: 0.62rem;
+            color: var(--text-muted);
         }
 
         .cert-item {
@@ -574,13 +782,13 @@
             align-items: center;
             gap: 5px;
             margin-bottom: 3px;
-            font-size: 0.68rem;
-            color: #ccc;
+            font-size: 0.65rem;
+            color: var(--text-main);
         }
 
         .cert-item i {
             color: #4CAF50;
-            font-size: 8px;
+            font-size: 7px;
         }
 
         /* MOBILE RESPONSIVE */
@@ -629,7 +837,7 @@
             }
 
             .stat-number {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
 
             .grid-2 {
@@ -642,20 +850,20 @@
                 justify-content: center;
             }
 
-            .skill-bar-name {
-                font-size: 0.85rem;
+            .timeline::before {
+                left: 3px;
             }
 
-            .skill-bar-track {
-                height: 8px;
+            .job-item::before {
+                left: -21px;
             }
 
-            .qr-section img {
-                width: 80px;
-                height: 80px;
+            .job-item::after {
+                left: -16px;
             }
         }
 
+        /* Print Styles */
         @media print {
 
             body,
@@ -668,7 +876,7 @@
             }
 
             .sidebar {
-                background: #f5f5f5 !important;
+                background: #f8f8f8 !important;
                 color: black !important;
                 border-right: 1px solid #ccc;
             }
@@ -680,13 +888,15 @@
             h1,
             h2,
             h3,
-            .role {
+            .role,
+            .job-role,
+            .edu-deg {
                 color: black !important;
             }
 
             .summary,
             .job-desc li {
-                color: #333 !important;
+                color: #444 !important;
             }
 
             .name-block h1 {
@@ -696,10 +906,6 @@
             .name-block h1 span,
             .section-title {
                 color: var(--orange) !important;
-            }
-
-            .job-role {
-                color: black !important;
             }
 
             .job-comp {
@@ -712,7 +918,7 @@
             }
 
             .sim-box {
-                background: #f9f9f9 !important;
+                background: #f5f5f5 !important;
             }
 
             .page {
@@ -733,12 +939,35 @@
                 animation: none;
             }
 
-            @keyframes pulse {
+            .map-pin {
+                animation: none;
+            }
 
-                0%,
-                100% {
-                    box-shadow: none;
-                }
+            .stat-box:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .animate-in,
+            .animate-in-left {
+                animation: none;
+                opacity: 1;
+            }
+
+            /* Watermark */
+            .page::after {
+                content: 'SILVESTR LISKIN';
+                position: fixed;
+                bottom: 10mm;
+                right: 10mm;
+                font-size: 8px;
+                color: rgba(0, 0, 0, 0.1);
+                font-family: 'Chakra Petch', sans-serif;
+                letter-spacing: 2px;
+                display: block;
+                border: none;
+                width: auto;
+                height: auto;
             }
         }
     </style>
@@ -750,11 +979,25 @@
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('tr')">TR</button>
         <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="theme-btn" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i> Light
+        </button>
     </div>
 
     <div class="page" id="cv-root"></div>
 
     <script>
+        let isDark = true;
+
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.classList.toggle('light-mode');
+            const btn = document.querySelector('.theme-btn');
+            btn.innerHTML = isDark
+                ? '<i class="fas fa-sun"></i> Light'
+                : '<i class="fas fa-moon"></i> Dark';
+        }
+
         const content = {
             en: {
                 role: "Industrial Robot Programmer",
@@ -767,6 +1010,7 @@
                 },
                 open_badge: "Open to Work",
                 qr_label: "Scan for LinkedIn",
+                map_label: "BURSA",
                 stats: [
                     { num: "4", label: "Robot Brands" },
                     { num: "10+", label: "Cells Built" },
@@ -775,16 +1019,16 @@
                 ],
                 contact: { loc: "Bursa, Turkey", phone: "+90 505 047 6850" },
                 skills: [
-                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
-                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
-                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
-                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00", icon: "K" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00", icon: "A" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107", icon: "F" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F", icon: "E" }
                 ],
                 software: [
-                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
-                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
-                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
-                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00", icon: "WV" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00", icon: "RS" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107", icon: "RG" },
+                    { name: "ESTUN Ed.", pct: 70, color: "#D32F2F", icon: "EE" }
                 ],
                 applications: ["Spot Welding", "Arc Welding", "Palletizing", "Handling", "Glueing"],
                 eoat: ["ARO Servo", "Fronius", "SKS", "Custom Grip"],
@@ -813,23 +1057,22 @@
                     {
                         role: "Robot Programmer / Integrator",
                         comp: "Teknorob (ABB & KUKA Partner)",
-                        date: "2023 - Present",
+                        date: "2023 - Now",
                         desc: [
                             "Programming robotic cells (KUKA, ABB, ESTUN, Fanuc) for automotive BiW.",
                             "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
-                            "First ESTUN integration with automotive standards in company.",
-                            "Welding systems: ARO Servo Guns, Fronius, SKS torches.",
-                            "Safety: SafeOperation, SafeMove, CIP Safety zones.",
-                            "PLC integration with Siemens S7 via Profinet."
+                            "First ESTUN integration with automotive standards.",
+                            "Welding systems: ARO Servo, Fronius, SKS.",
+                            "Safety: SafeOperation, SafeMove, CIP Safety."
                         ]
                     },
                     {
                         role: "Commissioning Engineer",
                         comp: "Ino Machinery",
-                        date: "Mar - Sep 2022",
+                        date: "Mar-Sep 2022",
                         desc: [
-                            "CNC gantries and automation lines commissioning.",
-                            "EPLAN verification, I/O testing, servo tuning."
+                            "CNC gantries and automation lines.",
+                            "EPLAN, I/O testing, servo tuning."
                         ]
                     },
                     {
@@ -837,7 +1080,7 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Automotive electronics diagnostics and repair."
+                            "Automotive electronics diagnostics."
                         ]
                     }
                 ],
@@ -848,7 +1091,7 @@
             },
             tr: {
                 role: "Endüstriyel Robot Programcısı",
-                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Y.Müh.). KUKA, ABB, Fanuc ve ESTUN robotlarının programlanması. KUKA KRL VS Code Eklentisinin geliştiricisi. Uluslararası seyahate hazır.",
+                summary: "Endüstriyel Robotik Entegrasyonunda uzmanlaşmış Otomasyon Mühendisi (Y.Müh.). KUKA, ABB, Fanuc ve ESTUN programlama. KUKA KRL VS Code Eklentisi geliştiricisi. Uluslararası seyahate hazır.",
                 titles: {
                     contacts: "İletişim", robots: "Robot Becerileri", sim: "Simülasyon",
                     apps: "Uygulamalar", eoat: "EOAT",
@@ -856,7 +1099,8 @@
                     edu: "Eğitim", langs: "Diller", extra: "Ek Bilgi", certs: "Sertifikalar"
                 },
                 open_badge: "İşe Açık",
-                qr_label: "LinkedIn için Tara",
+                qr_label: "LinkedIn Tara",
+                map_label: "BURSA",
                 stats: [
                     { num: "4", label: "Robot Markası" },
                     { num: "10+", label: "Hücre" },
@@ -865,16 +1109,16 @@
                 ],
                 contact: { loc: "Bursa, Türkiye", phone: "+90 505 047 6850" },
                 skills: [
-                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
-                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
-                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
-                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00", icon: "K" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00", icon: "A" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107", icon: "F" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F", icon: "E" }
                 ],
                 software: [
-                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
-                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
-                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
-                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00", icon: "WV" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00", icon: "RS" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107", icon: "RG" },
+                    { name: "ESTUN Ed.", pct: 70, color: "#D32F2F", icon: "EE" }
                 ],
                 applications: ["Punta Kaynak", "Gazaltı", "Paletleme", "Taşıma", "Yapıştırma"],
                 eoat: ["ARO Servo", "Fronius", "SKS", "Özel Grip"],
@@ -905,21 +1149,20 @@
                         comp: "Teknorob (ABB & KUKA Ortağı)",
                         date: "2023 - Devam",
                         desc: [
-                            "Otomotiv BiW için robotik hücre programlama (KUKA, ABB, ESTUN, Fanuc).",
+                            "Otomotiv BiW için robotik hücre programlama.",
                             "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
                             "Şirkette ilk ESTUN entegrasyonu.",
-                            "Kaynak sistemleri: ARO Servo, Fronius, SKS torch.",
-                            "Safety: SafeOperation, SafeMove, CIP Safety.",
-                            "Siemens S7 PLC entegrasyonu Profinet üzerinden."
+                            "Kaynak sistemleri: ARO Servo, Fronius, SKS.",
+                            "Safety: SafeOperation, SafeMove, CIP Safety."
                         ]
                     },
                     {
                         role: "Devreye Alma Mühendisi",
                         comp: "Ino Machinery",
-                        date: "Mar - Eyl 2022",
+                        date: "Mar-Eyl 2022",
                         desc: [
-                            "CNC ve gantry hatları devreye alma.",
-                            "EPLAN kontrolü, I/O testi, servo ayarı."
+                            "CNC ve gantry hatları.",
+                            "EPLAN, I/O testi, servo ayarı."
                         ]
                     },
                     {
@@ -927,12 +1170,12 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Otomotiv elektroniği arıza tespiti ve tamiri."
+                            "Otomotiv elektroniği arıza tespiti."
                         ]
                     }
                 ],
                 edu: [
-                    { deg: "Y.L. Elektronik Müh.", uni: "Uludağ Üniversitesi", year: "2022" },
+                    { deg: "Y.L. Elektronik Müh.", uni: "Uludağ Üniv.", year: "2022" },
                     { deg: "Lisans Elektronik Müh.", uni: "Kırgız Milli Üni.", year: "2017" }
                 ]
             },
@@ -947,6 +1190,7 @@
                 },
                 open_badge: "Открыт к работе",
                 qr_label: "LinkedIn QR",
+                map_label: "БУРСА",
                 stats: [
                     { num: "4", label: "Бренда роботов" },
                     { num: "10+", label: "Ячеек" },
@@ -955,16 +1199,16 @@
                 ],
                 contact: { loc: "Бурса, Турция", phone: "+90 505 047 6850" },
                 skills: [
-                    { name: "KUKA KRL", pct: 95, color: "#FF5E00" },
-                    { name: "ABB RAPID", pct: 75, color: "#FF9E00" },
-                    { name: "FANUC TP", pct: 65, color: "#FFC107" },
-                    { name: "ESTUN", pct: 70, color: "#D32F2F" }
+                    { name: "KUKA KRL", pct: 95, color: "#FF5E00", icon: "K" },
+                    { name: "ABB RAPID", pct: 75, color: "#FF9E00", icon: "A" },
+                    { name: "FANUC TP", pct: 65, color: "#FFC107", icon: "F" },
+                    { name: "ESTUN", pct: 70, color: "#D32F2F", icon: "E" }
                 ],
                 software: [
-                    { name: "WorkVisual", pct: 90, color: "#FF5E00" },
-                    { name: "RobotStudio", pct: 80, color: "#FF9E00" },
-                    { name: "RoboGuide", pct: 60, color: "#FFC107" },
-                    { name: "ESTUN Editor", pct: 70, color: "#D32F2F" }
+                    { name: "WorkVisual", pct: 90, color: "#FF5E00", icon: "WV" },
+                    { name: "RobotStudio", pct: 80, color: "#FF9E00", icon: "RS" },
+                    { name: "RoboGuide", pct: 60, color: "#FFC107", icon: "RG" },
+                    { name: "ESTUN Ed.", pct: 70, color: "#D32F2F", icon: "EE" }
                 ],
                 applications: ["Контактная сварка", "Дуговая", "Паллетирование", "Handling", "Клей"],
                 eoat: ["ARO Servo", "Fronius", "SKS", "Custom Grip"],
@@ -993,23 +1237,22 @@
                     {
                         role: "Программист роботов / Интегратор",
                         comp: "Teknorob (Партнёр ABB & KUKA)",
-                        date: "2023 - Наст. время",
+                        date: "2023 - Сейчас",
                         desc: [
-                            "Программирование ячеек (KUKA, ABB, ESTUN, Fanuc) для автопрома BiW.",
+                            "Программирование ячеек для автопрома BiW.",
                             "Virtual commissioning: RobotStudio, RoboGuide, WorkVisual.",
                             "Первое внедрение ESTUN по стандартам автопрома.",
                             "Сварочные системы: ARO Servo, Fronius, SKS.",
-                            "Safety: SafeOperation, SafeMove, CIP Safety.",
-                            "Интеграция Siemens S7 через Profinet."
+                            "Safety: SafeOperation, SafeMove, CIP Safety."
                         ]
                     },
                     {
                         role: "Инженер пусконаладки",
                         comp: "Ino Machinery",
-                        date: "Март - Сен 2022",
+                        date: "Март-Сен 2022",
                         desc: [
-                            "Пусконаладка ЧПУ и портальных систем.",
-                            "Проверка EPLAN, I/O тест, настройка серво."
+                            "ЧПУ и портальные системы.",
+                            "EPLAN, I/O тест, настройка серво."
                         ]
                     },
                     {
@@ -1017,7 +1260,7 @@
                         comp: "Jaguar Land Rover",
                         date: "2015 - 2016",
                         desc: [
-                            "Диагностика и ремонт автоэлектроники."
+                            "Диагностика автоэлектроники."
                         ]
                     }
                 ],
@@ -1028,7 +1271,6 @@
             }
         };
 
-        // QR Code (LinkedIn URL encoded as QR via API)
         const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/silvestr-liskin";
 
         function setLang(l) {
@@ -1036,10 +1278,13 @@
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`button[onclick="setLang('${l}')"]`).classList.add('active');
 
-            const makeSkillBar = (name, pct, color) => `
-                <div class="skill-bar">
+            const makeSkillBar = (name, pct, color, icon, delay) => `
+                <div class="skill-bar animate-in-left" style="animation-delay: ${delay}ms">
                     <div class="skill-bar-header">
-                        <span class="skill-bar-name">${name}</span>
+                        <span class="skill-bar-name">
+                            <span class="robot-icon" style="background:${color}">${icon}</span>
+                            ${name}
+                        </span>
                         <span class="skill-bar-pct">${pct}%</span>
                     </div>
                     <div class="skill-bar-track">
@@ -1050,60 +1295,69 @@
 
             const html = `
                 <div class="sidebar">
-                    <div class="photo-container">
+                    <div class="photo-container animate-in" style="animation-delay: 0ms">
                         <div class="photo-frame">
                             <img src="profile_photo.png" alt="Silvestr Liskin">
                         </div>
                         <div class="open-badge">🟢 ${d.open_badge}</div>
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 100ms">
                         <h3><i class="fas fa-address-card"></i> ${d.titles.contacts}</h3>
                         <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:silvlis@outlook.com">silvlis@outlook.com</a></div>
                         <div class="contact-item"><i class="fas fa-phone"></i> ${d.contact.phone}</div>
                         <div class="contact-item"><i class="fas fa-map-marker-alt"></i> ${d.contact.loc}</div>
                         <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/silvestr-liskin">silvestr-liskin</a></div>
                         <div class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/SilvestrLiskin">SilvestrLiskin</a></div>
+                        
+                        <div class="map-container">
+                            <svg class="map-turkey" viewBox="0 0 100 50">
+                                <path d="M5,25 Q15,15 30,20 T50,18 T70,22 T90,20 Q95,25 90,30 T70,35 T50,32 T30,35 T10,30 Z" 
+                                      fill="currentColor" opacity="0.3"/>
+                            </svg>
+                            <div class="map-pin"></div>
+                            <div class="map-label">${d.map_label}</div>
+                        </div>
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 200ms">
                         <h3><i class="fas fa-robot"></i> ${d.titles.robots}</h3>
-                        ${d.skills.map(s => makeSkillBar(s.name, s.pct, s.color)).join('')}
+                        ${d.skills.map((s, i) => makeSkillBar(s.name, s.pct, s.color, s.icon, 250 + i * 50)).join('')}
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 300ms">
                         <h3><i class="fas fa-desktop"></i> ${d.titles.sim}</h3>
-                        ${d.software.map(s => makeSkillBar(s.name, s.pct, s.color)).join('')}
+                        ${d.software.map((s, i) => makeSkillBar(s.name, s.pct, s.color, s.icon, 450 + i * 50)).join('')}
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 400ms">
                         <h3><i class="fas fa-industry"></i> ${d.titles.apps}</h3>
                         ${d.applications.map(a => `<span class="app-tag">${a}</span>`).join('')}
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 450ms">
                         <h3><i class="fas fa-wrench"></i> ${d.titles.eoat}</h3>
                         ${d.eoat.map(e => `<span class="eoat-tag">${e}</span>`).join('')}
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 500ms">
                         <h3><i class="fas fa-language"></i> ${d.titles.langs}</h3>
                         ${d.langs.map(lg => `<div class="lang-bar"><span class="lang-bar-name">${lg.name}</span><span class="lang-bar-level">${lg.level}</span></div>`).join('')}
                     </div>
 
-                    <div class="sidebar-section">
+                    <div class="sidebar-section animate-in" style="animation-delay: 550ms">
                         <h3><i class="fas fa-plus-circle"></i> ${d.titles.extra}</h3>
                         ${d.extra.map(e => `<div class="extra-item"><i class="fas ${e.icon}"></i> ${e.text}</div>`).join('')}
                     </div>
 
-                    <div class="qr-section">
+                    <div class="qr-section animate-in" style="animation-delay: 600ms">
                         <img src="${qrUrl}" alt="QR Code">
                         <div class="qr-label">${d.qr_label}</div>
                     </div>
                 </div>
 
                 <div class="main">
-                    <div class="header">
+                    <div class="header animate-in" style="animation-delay: 100ms">
                         <div class="name-block">
                             <h1>SILVESTR <span>LISKIN</span></h1>
                         </div>
@@ -1112,49 +1366,51 @@
                     </div>
 
                     <div class="stats-row">
-                        ${d.stats.map(s => `
-                            <div class="stat-box">
+                        ${d.stats.map((s, i) => `
+                            <div class="stat-box animate-in" style="animation-delay: ${200 + i * 80}ms">
                                 <div class="stat-number">${s.num}</div>
                                 <div class="stat-label">${s.label}</div>
                             </div>
                         `).join('')}
                     </div>
 
-                    <div class="dev-card">
-                         <div style="font-family:'Chakra Petch'; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:2px; font-size:0.75rem">
-                            <i class="fas fa-code-branch" style="color:white; margin-right:4px"></i> ${d.dev_proj.title}
+                    <div class="dev-card animate-in" style="animation-delay: 500ms">
+                         <div style="font-family:'Chakra Petch'; font-weight:700; color:var(--text-main); text-transform:uppercase; margin-bottom:2px; font-size:0.72rem">
+                            <i class="fas fa-code-branch" style="color:var(--orange); margin-right:4px"></i> ${d.dev_proj.title}
                          </div>
-                         <div style="font-size:0.68rem; color:#ddd; line-height:1.2">${d.dev_proj.desc}</div>
+                         <div style="font-size:0.65rem; color:var(--text-muted); line-height:1.2">${d.dev_proj.desc}</div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-certificate"></i> ${d.titles.certs}</div>
-                    <div class="sim-box" style="display:flex; gap:10px; flex-wrap:wrap">
-                        ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> <strong>${c.name}</strong> <span style="color:#777">(${c.org})</span></div>`).join('')}
+                    <div class="section-title animate-in" style="animation-delay: 550ms"><i class="fas fa-certificate"></i> ${d.titles.certs}</div>
+                    <div class="sim-box" style="display:flex; gap:8px; flex-wrap:wrap">
+                        ${d.certs.map(c => `<div class="cert-item"><i class="fas fa-check-circle"></i> <strong>${c.name}</strong> <span style="color:var(--text-muted)">(${c.org})</span></div>`).join('')}
                     </div>
 
-                    <div class="section-title"><i class="fas fa-cogs"></i> ${d.titles.industrial}</div>
+                    <div class="section-title animate-in" style="animation-delay: 600ms"><i class="fas fa-cogs"></i> ${d.titles.industrial}</div>
                     <div class="sim-box">
                         ${d.industrial_tags.map(t => `<span class="mini-tag">${t}</span>`).join('')}
                     </div>
 
-                    <div class="section-title"><i class="fas fa-briefcase"></i> ${d.titles.exp}</div>
-                    ${d.exp.map(e => `
-                        <div class="job-item">
-                            <div class="job-head">
-                                <span class="job-role">${e.role}</span>
-                                <span class="job-date">${e.date}</span>
+                    <div class="section-title animate-in" style="animation-delay: 650ms"><i class="fas fa-briefcase"></i> ${d.titles.exp}</div>
+                    <div class="timeline">
+                        ${d.exp.map((e, i) => `
+                            <div class="job-item animate-in" style="animation-delay: ${700 + i * 100}ms">
+                                <div class="job-head">
+                                    <span class="job-role">${e.role}</span>
+                                    <span class="job-date">${e.date}</span>
+                                </div>
+                                <div class="job-comp">${e.comp}</div>
+                                <div class="job-desc">
+                                    <ul>${e.desc.map(x => `<li>${x}</li>`).join('')}</ul>
+                                </div>
                             </div>
-                            <div class="job-comp">${e.comp}</div>
-                            <div class="job-desc">
-                                <ul>${e.desc.map(x => `<li>${x}</li>`).join('')}</ul>
-                            </div>
-                        </div>
-                    `).join('')}
+                        `).join('')}
+                    </div>
 
-                    <div class="section-title"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
+                    <div class="section-title animate-in" style="animation-delay: 1000ms"><i class="fas fa-graduation-cap"></i> ${d.titles.edu}</div>
                     <div class="grid-2">
-                        ${d.edu.map(u => `
-                            <div class="edu-item">
+                        ${d.edu.map((u, i) => `
+                            <div class="edu-item animate-in" style="animation-delay: ${1050 + i * 50}ms">
                                 <div class="edu-deg">${u.deg}</div>
                                 <div class="edu-uni">${u.uni} | ${u.year}</div>
                             </div>
