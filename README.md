@@ -49,7 +49,10 @@
 
 <p align="left">
   <a href="https://github.com/SilvestrLiskin/SilvestrLiskin/blob/main/CV.md">
-    <img src="https://img.shields.io/badge/Resume-CV-4CAF50?style=for-the-badge&logo=read-the-docs&logoColor=white" alt="CV" />
+    <img src="https://img.shields.io/badge/Simple-CV-gray?style=for-the-badge&logo=read-the-docs&logoColor=white" alt="CV" />
+  </a>
+  <a href="https://htmlpreview.github.io/?https://github.com/SilvestrLiskin/SilvestrLiskin/blob/main/resume.html">
+    <img src="https://img.shields.io/badge/Interactive-Resume-4CAF50?style=for-the-badge&logo=html5&logoColor=white" alt="Resume" />
   </a>
   <a href="https://www.linkedin.com/in/silvestr-liskin-ab712920b/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
